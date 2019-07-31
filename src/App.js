@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   // getAllProjects = () => {
-  //   axios.get(`http://localhost:3000/api/projects`, {withCredentials: true})
+  //   axios.get(`http://localhost:5000/api/projects`, {withCredentials: true})
   //   .then(responseFromApi => {
   //     this.setState({
   //       listOfProjects: responseFromApi.data, ready: true
@@ -57,7 +57,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-      this.getAllProjects();
+      // this.getAllProjects();
       this.getCurrentlyLoggedInUser();
   }
 
@@ -85,7 +85,7 @@ class App extends React.Component {
           />
         }
 
-        <Switch>
+        {/* <Switch>
           <Route exact path="/projects" render ={(props)=> <ProjectIndex
           {...props} 
           theUser = {this.state.currentlyLoggedIn} 
@@ -102,7 +102,8 @@ class App extends React.Component {
           getData = {this.getAllProjects}
           theUser = {this.state.currentlyLoggedIn}
           />} />
-        </Switch>
+        </Switch> */}
+        
       </div>
     );
   }

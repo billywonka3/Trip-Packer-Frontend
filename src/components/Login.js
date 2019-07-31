@@ -28,21 +28,35 @@ class Login extends Component {
     return(
       <form onSubmit = {this.tryToLogin}>
 
-        <h3>Login</h3>
+        <h2>Sign in</h2>
+        
+        {/* <p class="hint-text">Sign in with your social media account</p>
+        <div class="social-btns text-center">
+            <a href="#" class="btn google" ><i class="fa fa-google"></i></a>
+            <a href="#" class="btn facebook " ><i class="fa fa-facebook"></i></a>
+            <a href="#" class="btn twitter" ><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="hint-text"> Social login coming soon! </p>
+        <div class="or-seperator"><b>or</b></div> */}
 
-        <legend>Username</legend>
-        <input value={this.state.usernameInput}
-        name="usernameInput"
-        onChange={this.handleChange}
-        />
+        <div class="form-group">
+          <legend>Username</legend>
+          <input value={this.state.usernameInput}
+          name="usernameInput"
+          onChange={this.handleChange}
+          />
+        </div>
+        <div class="form-group">
+          <legend>Password</legend>
+          <input value={this.state.passwordInput} 
+          name="passwordInput"
+          onChange={this.handleChange}
+          />
+        </div>
 
-        <legend>Password</legend>
-        <input value={this.state.passwordInput} 
-        name="passwordInput"
-        onChange={this.handleChange}
-        />
-
-        <button>Submit</button>
+        <div class="form-group center-it">
+          <button>Submit</button>
+        </div>
 
       </form>
     )
