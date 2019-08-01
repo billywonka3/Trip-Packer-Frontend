@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import AuthService from '../services/AuthService';
+// import AuthService from '../services/AuthService';
+import axios from 'axios';
 
 class Login extends Component {
   constructor(props){
     super(props);
     this.state = { usernameInput: '', passwordInput: '' };
-    this.service = new AuthService();
+    // this.service = new AuthService();
   }
 
   handleChange = (e) =>{
@@ -17,10 +18,14 @@ class Login extends Component {
       const uName = this.state.usernameInput;
       const pWord = this.state.passwordInput;
     
-      this.service.login(uName, pWord)
+      // this.service.login(uName, pWord)
+      axios.post('http://localhost:5000/api/auth/login', {
+        username: uName,
+        password: pWord
+      }, {withCredentials: true})
       .then(()=>{
-          this.props.toggleForm('login');
-          this.props.getUser();
+        this.props.getUser();
+        this.props.toggleForm('login');
       })
   }
 
@@ -30,23 +35,23 @@ class Login extends Component {
 
         <h2>Sign in</h2>
         
-        {/* <p class="hint-text">Sign in with your social media account</p>
-        <div class="social-btns text-center">
-            <a href="#" class="btn google" ><i class="fa fa-google"></i></a>
-            <a href="#" class="btn facebook " ><i class="fa fa-facebook"></i></a>
-            <a href="#" class="btn twitter" ><i class="fa fa-twitter"></i></a>
+        {/* <p className="hint-text">Sign in with your social media account</p>
+        <div className="social-btns text-center">
+            <a href="#" className="btn google" ><i className="fa fa-google"></i></a>
+            <a href="#" className="btn facebook " ><i className="fa fa-facebook"></i></a>
+            <a href="#" className="btn twitter" ><i className="fa fa-twitter"></i></a>
         </div>
-        <p class="hint-text"> Social login coming soon! </p>
-        <div class="or-seperator"><b>or</b></div> */}
+        <p className="hint-text"> Social login coming soon! </p>
+        <div className="or-seperator"><b>or</b></div> */}
 
-        <div class="form-group">
+        <div className="form-group">
           <legend>Username</legend>
           <input value={this.state.usernameInput}
           name="usernameInput"
           onChange={this.handleChange}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <legend>Password</legend>
           <input value={this.state.passwordInput} 
           name="passwordInput"
@@ -54,7 +59,7 @@ class Login extends Component {
           />
         </div>
 
-        <div class="form-group center-it">
+        <div className="form-group center-it">
           <button>Submit</button>
         </div>
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import {Route, Link, Switch} from 'react-router-dom';
+// import {Route, Link, Switch} from 'react-router-dom';
 
-import CategoryIndex from './components/category/CategoryIndex.js'
-import CategoryDetails from './components/category/CategoryDetails';
+// import TripIndex from './components/trips/TripIndex.js'
+// import TripDetails from './components/trips/TripDetails';
 
 import Signup from './components/Signup.js';
 import Login from './components/Login.js';
@@ -17,8 +17,8 @@ import axios from 'axios';
 class App extends React.Component {
   constructor(props){
     super(props)
-    this.state = { 
-      listOfCategories: [],
+    this.state = {
+      listOfTrips: [],
       currentlyLoggedIn: null,
       ready: false,
       signupShowing: false,
@@ -28,19 +28,23 @@ class App extends React.Component {
     this.service = new AuthService();
   }
 
-  getAllCategories = () => {
-    axios.get(`http://localhost:5000/api/categories`, {withCredentials: true})
+  getAllTrips = () => {
+    axios.get(`http://localhost:5000/api/trips`, {withCredentials: true})
     .then(responseFromApi => {
       this.setState({
-        listOfCategories: responseFromApi.data, ready: true
+        listOfTrips: responseFromApi.data, ready: true
       })
     })
   }
 
   getCurrentlyLoggedInUser = () =>{
-    this.service.currentUser()
-    .then((theUser)=>{
+    // this.service.currentUser()
+    axios.get('http://localhost:5000/api/auth/getcurrentuser', {withCredentials: true})
+    .then((response)=>{
+      // console.log('fetching the user now')
+      let theUser = response.data;
       this.setState({currentlyLoggedIn: theUser})
+      return theUser;
     })
     .catch(()=>{
       this.setState({currentlyLoggedIn: null})
@@ -55,13 +59,23 @@ class App extends React.Component {
     } else {
       theForm = 'loginShowing'
     }
-
     this.setState({[theForm]: !this.state[theForm]})
   }
 
   componentDidMount() {
-      this.getAllCategories();
+      this.getAllTrips();
       this.getCurrentlyLoggedInUser();
+  }
+
+  logout = () =>{
+    axios.post('http://localhost:5000/api/auth/logout', {}, {withCredentials: true})
+    .then((response)=>{
+      console.log(response);
+      this.getCurrentlyLoggedInUser();  
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   }
 
   render(){
@@ -70,42 +84,43 @@ class App extends React.Component {
     return (
       <div>
         <Navbar 
-        theUser = {this.state.currentlyLoggedIn} 
-        pleaseLogOut = {()=> this.service.logout()}
-        toggleForm = {this.toggleForm}
-        getUser = {this.getCurrentlyLoggedInUser}
+          theUser = {this.state.currentlyLoggedIn} 
+          // pleaseLogOut = {()=> this.service.logout()}
+          pleaseLogOut = {this.logout}
+          toggleForm = {this.toggleForm}
+          getUser = {this.getCurrentlyLoggedInUser}
         />
 
         {this.state.signupShowing && 
           <Signup getUser = {this.getCurrentlyLoggedInUser}
-          toggleForm = {this.toggleForm}
+            toggleForm = {this.toggleForm}
           />
         }
 
         {this.state.loginShowing && 
           <Login getUser = {this.getCurrentlyLoggedInUser}
-          toggleForm = {this.toggleForm}
+            toggleForm = {this.toggleForm}
           />
         }
 
-        <Switch>
-          <Route exact path="/categories" render ={(props)=> <CategoryIndex
-          {...props} 
-          theUser = {this.state.currentlyLoggedIn} 
-          allTheCategories ={this.state.listOfCategories}
-          getData = {this.getAllCategories}
-          ready = {this.state.ready}
-          theUser = {this.state.currentlyLoggedIn}
+        {/* <Switch>
+          <Route exact path="/trips" render ={(props)=> <TripIndex
+            {...props} 
+            theUser = {this.state.currentlyLoggedIn} 
+            allTheTrips ={this.state.listOfTrips}
+            getData = {this.getAllTrips}
+            ready = {this.state.ready}
+            theUser = {this.state.currentlyLoggedIn}
           />} />
 
-          <Route exact path="/categories/:theID" render ={(props)=> <CategoryDetails
-          {...props} 
-          allTheCategories ={this.state.listOfCategories}
-          ready = {this.state.ready}
-          getData = {this.getAllCategories}
-          theUser = {this.state.currentlyLoggedIn}
+          <Route exact path="/trips/:theID" render ={(props)=> <TripDetails
+            {...props} 
+            allTheTrips ={this.state.listOfTrips}
+            ready = {this.state.ready}
+            getData = {this.getAllTrips}      // this.service.login(uName, pWord)
+            theUser = {this.state.currentlyLoggedIn}
           />} />
-        </Switch>
+        </Switch> */}
         
       </div>
     );

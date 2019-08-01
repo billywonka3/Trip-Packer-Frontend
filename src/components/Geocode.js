@@ -70,7 +70,7 @@ Geocode.fromAddress("Eiffel Tower").then(
 //     )
 // }
 
-export default Geocoding;
+export default Geocode;
 
 
 

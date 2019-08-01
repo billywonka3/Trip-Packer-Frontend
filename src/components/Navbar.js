@@ -5,30 +5,27 @@ import {Link, NavLink} from 'react-router-dom';
 function Navbar(props){
 
     const doTheLogout = () =>{
-        props.pleaseLogOut()
-        .then(()=>{
-            props.getUser();
-        })
+        props.pleaseLogOut();
     }
 
     return(
         <nav>
-            {/* {props.theUser && 
-            <Link to="/projects" style={{ textDecoration: 'none', margin: '10px' }}> Main Page </Link>
-            } */}
+            {props.theUser && 
+                <Link to="/categories" style={{ textDecoration: 'none', margin: '10px' }}> Main Page </Link>
+            }
 
             {!props.theUser && 
-            <span>
-                <button onClick = {()=> props.toggleForm('login')} > Login </button>
-                <button onClick = {()=> props.toggleForm('signup')}> Sign Up </button>
-            </span>
+                <span>
+                    <button onClick = {()=> props.toggleForm('login')} > Login </button>
+                    <button onClick = {()=> props.toggleForm('signup')}> Sign Up </button>
+                </span>
             }
 
             {props.theUser && 
-            <span>
-                <button onClick = {doTheLogout} > Log Out </button>
-                <span>Hello, {props.theUser.username}</span>
-            </span>
+                <span>
+                    <button onClick = {doTheLogout} > Log Out </button>
+                    <br/> <span> Welcome, {props.theUser.username}. Let's start planning for your trip. </span>
+                </span>
             }
         </nav>
     )

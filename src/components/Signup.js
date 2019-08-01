@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import AuthService from '../services/AuthService';
+// import AuthService from '../services/AuthService';
+import axios from 'axios';
 
 class Signup extends Component {
   constructor(props){
     super(props);
     this.state = { usernameInput: '', passwordInput: '' };
-    this.service = new AuthService();
+    // this.service = new AuthService();
   }
 
   handleChange = (e) =>{
       this.setState({[e.target.name]: e.target.value})
+      // this line evaluates to {usernameInput: 'hello'}
   }
 
   tryToSignUp = (e) =>{
@@ -17,10 +19,14 @@ class Signup extends Component {
     const uName = this.state.usernameInput;
     const pWord = this.state.passwordInput;
     
-    this.service.signup(uName, pWord)
+    // this.service.signup(uName, pWord)
+    axios.post('http://localhost:5000/api/auth/signup', {
+      username: uName,
+      password: pWord
+    }, {withCredentials: true})
     .then(()=>{
-        this.props.toggleForm('signup');
-        this.props.getUser();
+      this.props.getUser();
+      this.props.toggleForm('signup');
     })
   }
 
@@ -30,20 +36,35 @@ class Signup extends Component {
 
         <h3>Signup For An Account</h3>
 
-        <legend>Username</legend>
-        <input value={this.state.usernameInput}
-        name="usernameInput"
-        onChange={this.handleChange}
-        />
+        {/* <p class="hint-text">Sign in with your social media account</p>
+        <div class="social-btns text-center">import Geocode from "react-geocode";
 
-        <legend>Password</legend>
-        <input value={this.state.passwordInput} 
-        name="passwordInput"
-        onChange={this.handleChange}
-        />
+            <a href="#" class="btn google" ><i class="fa fa-google"></i></a>
+            <a href="#" class="btn facebook " ><i class="fa fa-facebook"></i></a>
+            <a href="#" class="btn twitter" ><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="hint-text"> Social login coming soon! </p>
+        <div class="or-seperator"><b>or</b></div> */}
 
-        <button>Submit</button>
+        <div className="form-group">
+          <legend>Username</legend>
+          <input value={this.state.usernameInput}
+          name="usernameInput"
+          className="form-control input-lg" 
+          onChange={this.handleChange}
+          />
+        </div>
 
+        <div className="form-group">
+          <legend>Password</legend>
+          <input value={this.state.passwordInput} 
+          name="passwordInput"
+          className="form-control input-lg"
+          onChange={this.handleChange}
+          />
+        </div>
+
+        <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>
       </form>
     )
   }
