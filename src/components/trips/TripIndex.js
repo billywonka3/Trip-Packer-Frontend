@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import AddTrip from '../trip/AddTrip.js';
-import EditTrip from '../trip/EditTrip.js';
+import AddTrip from '../trips/AddTrip.js';
+import EditTrip from '../trips/EditTrip.js';
 
 
 class TripIndex extends Component {

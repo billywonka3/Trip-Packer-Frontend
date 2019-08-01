@@ -6,7 +6,7 @@ class EditItem extends Component {
     super(props);
     this.state = {
         subcategory: this.props.theItem.subcategory, 
-        name: this.props.theItem.name
+        name: this.props.theItem.name,
         weight: this.props.theItem.weight
     }
   }

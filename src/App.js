@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-// import {Route, Link, Switch} from 'react-router-dom';
+// import {Route, Switch} from 'react-router-dom';
 
 // import TripIndex from './components/trips/TripIndex.js'
 // import TripDetails from './components/trips/TripDetails';
 
 import Signup from './components/Signup.js';
 import Login from './components/Login.js';
-import AuthService from './services/AuthService.js';
+// import AuthService from './services/AuthService.js';
 
 import Navbar from './components/Navbar.js'
 
@@ -25,7 +25,7 @@ class App extends React.Component {
       loginShowing: false,
     };
 
-    this.service = new AuthService();
+    // this.service = new AuthService();
   }
 
   getAllTrips = () => {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import AddItem from '../addItem/AddItem.js';
-import EditItem from '../editItem/EditItem.js';
+import AddItem from '../items/AddItem.js';
+import EditItem from '../items/EditItem.js';
 
 
 class TripDetails extends Component{
