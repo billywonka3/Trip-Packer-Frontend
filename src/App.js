@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import {Route, Link, Switch} from 'react-router-dom';
 
+import CategoryIndex from './components/category/CategoryIndex.js'
+import CategoryDetails from './components/category/CategoryDetails';
+
 import Signup from './components/Signup.js';
 import Login from './components/Login.js';
 import AuthService from './services/AuthService.js';
@@ -15,7 +18,7 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = { 
-      listOfProjects: [],
+      listOfCategories: [],
       currentlyLoggedIn: null,
       ready: false,
       signupShowing: false,
@@ -25,14 +28,14 @@ class App extends React.Component {
     this.service = new AuthService();
   }
 
-  // getAllProjects = () => {
-  //   axios.get(`http://localhost:5000/api/projects`, {withCredentials: true})
-  //   .then(responseFromApi => {
-  //     this.setState({
-  //       listOfProjects: responseFromApi.data, ready: true
-  //     })
-  //   })
-  // }
+  getAllCategories = () => {
+    axios.get(`http://localhost:5000/api/categories`, {withCredentials: true})
+    .then(responseFromApi => {
+      this.setState({
+        listOfCategories: responseFromApi.data, ready: true
+      })
+    })
+  }
 
   getCurrentlyLoggedInUser = () =>{
     this.service.currentUser()
@@ -57,7 +60,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-      // this.getAllProjects();
+      this.getAllCategories();
       this.getCurrentlyLoggedInUser();
   }
 
@@ -85,24 +88,24 @@ class App extends React.Component {
           />
         }
 
-        {/* <Switch>
-          <Route exact path="/projects" render ={(props)=> <ProjectIndex
+        <Switch>
+          <Route exact path="/categories" render ={(props)=> <CategoryIndex
           {...props} 
           theUser = {this.state.currentlyLoggedIn} 
-          allTheProjects ={this.state.listOfProjects}
-          getData = {this.getAllProjects}
+          allTheCategories ={this.state.listOfCategories}
+          getData = {this.getAllCategories}
           ready = {this.state.ready}
           theUser = {this.state.currentlyLoggedIn}
           />} />
 
-          <Route exact path="/projects/:theID" render ={(props)=> <ProjectDetails
+          <Route exact path="/categories/:theID" render ={(props)=> <CategoryDetails
           {...props} 
-          allTheProjects ={this.state.listOfProjects}
+          allTheCategories ={this.state.listOfCategories}
           ready = {this.state.ready}
-          getData = {this.getAllProjects}
+          getData = {this.getAllCategories}
           theUser = {this.state.currentlyLoggedIn}
           />} />
-        </Switch> */}
+        </Switch>
         
       </div>
     );
