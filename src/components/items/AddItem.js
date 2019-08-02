@@ -5,7 +5,11 @@ import axios from 'axios';
 class AddItem extends Component {
   constructor(props){
       super(props);
-      this.state = { newSubcategory: "", newName: "" };
+      this.state = { 
+        newSubcategory: "", 
+        newName: "",
+        // newWeight: "",
+      };
   }
    
   handleFormSubmit = (event) => {
@@ -13,13 +17,17 @@ class AddItem extends Component {
     axios.post("http://localhost:5000/api/items", {
         theSubcategory: this.state.newSubcategory,
         theName: this.state.newName,
-        theWeight: this.state.newWeight,
-        theProject: this.props.theProjectToAddItemsTo
+        // theWeight: this.state.newWeight,
+        theTrip: this.props.theTripToAddItemsTo
       })
     .then( () => {
         this.props.getData();
-        // this function updates the list in ProjectIndex.js
-        this.setState({newSubcategory: "", newName: ""});
+        // this function updates the list in TripIndex.js
+        this.setState({
+          newSubcategory: "", 
+          newName: "", 
+          // newWeight: ""
+        });
     })
     .catch( error => console.log(error) )
   }
@@ -33,15 +41,17 @@ class AddItem extends Component {
     return(
       <div>
         <form onSubmit={this.handleFormSubmit}>
-          <label> Subcategory: </label>
-          <input type="text" name="newSubcategory" value={this.state.newSubcategory} onChange={this.handleChange}/>
-
-          <label> Name: </label>
+          <label> Add Item Name: </label>
+          <br/>
           <textarea name="newName" value={this.state.newName} onChange={this.handleChange} />
-          
-          <label> Weight: </label>
+          <br/>
+          <label> Subcategory: </label>
+          <br/>
+          <input type="text" name="newSubcategory" value={this.state.newSubcategory} onChange={this.handleChange}/>
+          <br/>
+          {/* <label> Weight: </label>
           <textarea name="newWeight" value={this.state.newWeight} onChange={this.handleChange} />
-          
+          <br/> */}
           <input type="submit" value="Submit" />
         </form>
       </div>

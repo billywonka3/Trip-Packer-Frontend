@@ -7,24 +7,24 @@ class EditItem extends Component {
     this.state = {
         subcategory: this.props.theItem.subcategory, 
         name: this.props.theItem.name,
-        weight: this.props.theItem.weight
+        // weight: this.props.theItem.weight
     }
   }
     
   handleFormSubmit = (event) => {
     const subcategory = this.state.subcategory;
     const name = this.state.name;
-    const weight =  this.state.weight;
+    // const weight =  this.state.weight;
 
     event.preventDefault();
 
     axios.post(`http://localhost:5000/api/items/update/${this.props.theItem._id}`,
-        { thesubcategory: subcategory,
-          thename: name,
-          theweight: weight,
+        { theSubcategory: subcategory,
+          theName: name,
+          // theweight: weight,
          })
     .then( () => {
-        this.props.getAllTheProjectsInAppJS();
+        this.props.getAllTheTripsInAppJS();
         this.props.resetEditingSituation();
     })
     .catch( error => console.log(error) )

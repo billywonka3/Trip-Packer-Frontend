@@ -72,7 +72,7 @@ class TripIndex extends Component {
             return(
                 <div>
                     <div style={{width: '60%', float:"left"}}>
-                    {this.showTrips()}
+                        {this.showTrips()}
                     </div>
                     <div style={{width: '40%', float:"right"}}>
                         <AddTrip getData={this.props.getData}/>

@@ -35,16 +35,17 @@ class TripDetails extends Component{
         const allTheTrips = this.props.allTheTrips;
         const theID = this.props.match.params.theID;
 
-        const theActualTrip = allTheTrips.find((eachP)=>{
-            return eachP._id === theID
+        const theActualTrip = allTheTrips.find((eachTrip)=>{
+            return eachTrip._id === theID
         })
 
         const showItems = () =>{
-            return theActualTrip.Items.map((eachItem, index)=>{
+            return theActualTrip.items.map((eachItem, index)=>{
+                console.log(eachItem)
                 if(this.state.editing !== index)
                     return ( <li key={eachItem._id}>
-                                <h4>{eachItem.title}</h4>
-                                <h6>{eachItem.description}</h6>
+                                <h4>{eachItem.subcategory}</h4>
+                                <h6>{eachItem.name}</h6>
                                 <button onClick = {()=>{this.edit(index)}}>Edit This Item</button>
                                 <button onClick = {()=>{this.deleteItem(eachItem._id)}}>Delete This Item</button>
                             </li>
@@ -62,8 +63,9 @@ class TripDetails extends Component{
 
         if(this.props.ready)
             return(
-                <div style={{paddingTop: '100px'}}>
-                    <div style={{float: 'left'}}>
+                 <div style={{paddingTop: '100px'}}>
+                   <script type='text/javascript' src="https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js?width=100%&height=350&title=Miami, Florida&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=us&htColor=333333&ltColor=C7C7C7&displaySum=yes&displayHeader=yes"></script>
+                   <div style={{float: 'left'}}>
                         <h2>
                             {theActualTrip.title}
                         </h2>

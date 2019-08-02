@@ -32,11 +32,13 @@ class AddTrip extends Component {
       <div className="add-trip">
         <form onSubmit={this.handleFormSubmit}>
           <label>Title:</label>
+          <br/>
           <input type="text" name="newTitle" value={this.state.newTitle} onChange={ e => this.handleChange(e)}/>
-          
+          <br/>
           <label>Description:</label>
+          <br/>
           <textarea name="newDescription" value={this.state.newDescription} onChange={ e => this.handleChange(e)} />
-          
+          <br/>
           <input type="submit" value="Submit" />
         </form>
       </div>

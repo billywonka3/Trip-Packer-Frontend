@@ -3,7 +3,7 @@ import './App.css';
 import {Route, Switch} from 'react-router-dom';
 
 import TripIndex from './components/trips/TripIndex.js'
-import TripDetails from './components/trips/TripDetails';
+import TripDetails from './components/trips/TripDetails.js';
 
 import Signup from './components/Signup.js';
 import Login from './components/Login.js';
@@ -28,14 +28,14 @@ class App extends React.Component {
     // this.service = new AuthService();
   }
 
-  getGeocodeKey = () => {
-    // axios.get(`http://localhost:5000/api/geocode`, {withCredentials: true})
-    // .then(responseFromApi => {
-    //   this.setState({
-    //     listOfTrips: responseFromApi.data, ready: true
-    //   })
-    // })
-  }
+  // getGeocodeKey = () => {
+  //   axios.get(`http://localhost:5000/api/geocode`, {withCredentials: true})
+  //   .then(responseFromApi => {
+  //     this.setState({
+  //       listOfTrips: responseFromApi.data, ready: true
+  //     })
+  //   })
+  // }
 
   getAllTrips = () => {
     axios.get(`http://localhost:5000/api/trips`, {withCredentials: true})
@@ -74,7 +74,7 @@ class App extends React.Component {
   componentDidMount() {
       this.getAllTrips();
       this.getCurrentlyLoggedInUser();
-      this.getGeocodeKey();
+      // this.getGeocodeKey();
   }
 
   logout = () =>{
