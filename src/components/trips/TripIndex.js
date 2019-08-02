@@ -23,7 +23,7 @@ class TripIndex extends Component {
     }
 
     deleteTrip = (idOfTrip) =>{
-        axios.delete(`http://localhost:5000/api/trip/${idOfTrip}`)
+        axios.delete(`http://localhost:5000/api/trips/${idOfTrip}`)
         .then(()=>{
             this.props.getData();
         })
@@ -46,13 +46,13 @@ class TripIndex extends Component {
             if(this.state.editing !== index){
                 return (
                     <div key={trip._id}>
-                        <Link to={`/trips/${trip._id}`}>
+                        <Link to={`/api/trips/${trip._id}`}>
                             <h3>{trip.title}</h3>
                         </Link>
-                        <p style={{maxWidth: '400px'}} >{trip.description} </p>
+                        <p style={{maxWidth: '400px'}} > {trip.description} </p>
 
-                        <button onClick={()=>{this.changeEditing(index)}} >Edit This Trip</button>
-                        <button onClick = {()=>{this.deleteTrip(trip._id)}} >Delete This Trip</button>
+                        <button onClick={()=>{this.changeEditing(index)}}> Edit This Trip </button>
+                        <button onClick = {()=>{this.deleteTrip(trip._id)}}> Delete This Trip </button>
                     </div>
                 )
             } else {

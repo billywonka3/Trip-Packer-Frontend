@@ -47,15 +47,15 @@ class Login extends Component {
         <div className="form-group">
           <legend>Username</legend>
           <input value={this.state.usernameInput}
-          name="usernameInput"
-          onChange={this.handleChange}
+            name="usernameInput"
+            onChange={this.handleChange}
           />
         </div>
         <div className="form-group">
           <legend>Password</legend>
           <input value={this.state.passwordInput} 
-          name="passwordInput"
-          onChange={this.handleChange}
+            name="passwordInput"
+            onChange={this.handleChange}
           />
         </div>
 

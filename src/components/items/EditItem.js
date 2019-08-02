@@ -14,7 +14,7 @@ class EditItem extends Component {
   handleFormSubmit = (event) => {
     const subcategory = this.state.subcategory;
     const name = this.state.name;
-    const weight =  this.state.weight
+    const weight =  this.state.weight;
 
     event.preventDefault();
 

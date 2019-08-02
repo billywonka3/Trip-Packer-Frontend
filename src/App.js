@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-// import {Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
-// import TripIndex from './components/trips/TripIndex.js'
-// import TripDetails from './components/trips/TripDetails';
+import TripIndex from './components/trips/TripIndex.js'
+import TripDetails from './components/trips/TripDetails';
 
 import Signup from './components/Signup.js';
 import Login from './components/Login.js';
@@ -26,6 +26,15 @@ class App extends React.Component {
     };
 
     // this.service = new AuthService();
+  }
+
+  getGeocodeKey = () => {
+    // axios.get(`http://localhost:5000/api/geocode`, {withCredentials: true})
+    // .then(responseFromApi => {
+    //   this.setState({
+    //     listOfTrips: responseFromApi.data, ready: true
+    //   })
+    // })
   }
 
   getAllTrips = () => {
@@ -65,6 +74,7 @@ class App extends React.Component {
   componentDidMount() {
       this.getAllTrips();
       this.getCurrentlyLoggedInUser();
+      this.getGeocodeKey();
   }
 
   logout = () =>{
@@ -103,8 +113,8 @@ class App extends React.Component {
           />
         }
 
-        {/* <Switch>
-          <Route exact path="/trips" render ={(props)=> <TripIndex
+        <Switch>
+          <Route exact path="/api/trips" render ={(props)=> <TripIndex
             {...props} 
             theUser = {this.state.currentlyLoggedIn} 
             allTheTrips ={this.state.listOfTrips}
@@ -113,14 +123,14 @@ class App extends React.Component {
             theUser = {this.state.currentlyLoggedIn}
           />} />
 
-          <Route exact path="/trips/:theID" render ={(props)=> <TripDetails
+          <Route exact path="/api/trips/:theID" render ={(props)=> <TripDetails
             {...props} 
             allTheTrips ={this.state.listOfTrips}
             ready = {this.state.ready}
-            getData = {this.getAllTrips}      // this.service.login(uName, pWord)
+            getData = {this.getAllTrips}
             theUser = {this.state.currentlyLoggedIn}
           />} />
-        </Switch> */}
+        </Switch>
         
       </div>
     );

@@ -44,6 +44,7 @@ class TripDetails extends Component{
                 if(this.state.editing !== index)
                     return ( <li key={eachItem._id}>
                                 <h4>{eachItem.title}</h4>
+                                <h6>{eachItem.description}</h6>
                                 <button onClick = {()=>{this.edit(index)}}>Edit This Item</button>
                                 <button onClick = {()=>{this.deleteItem(eachItem._id)}}>Delete This Item</button>
                             </li>
@@ -51,9 +52,9 @@ class TripDetails extends Component{
                 else
                     return(
                         <EditItem
-                        theItem ={eachItem}
-                        getAllTheTripsInAppJS = {this.props.getData}
-                        resetEditingSituation = {this.resetEdit}
+                            theItem ={eachItem}
+                            getAllTheTripsInAppJS = {this.props.getData}
+                            resetEditingSituation = {this.resetEdit}
                         />
                     )
             })  
@@ -65,9 +66,13 @@ class TripDetails extends Component{
                     <div style={{float: 'left'}}>
                         <h2>
                             {theActualTrip.title}
-                        </h2>            
+                        </h2>
+                        
+                        <h3>
+                            {theActualTrip.description}
+                        </h3>
 
-                        {theActualTrip.Items.length > 0 && 
+                        {theActualTrip.items.length > 0 && 
                             <ul>
                                 <h3>Items For This Trip</h3>
                                 <hr />
@@ -78,8 +83,8 @@ class TripDetails extends Component{
 
                     <div className="right-side-column" style={{float: 'right'}}>
                         <AddItem 
-                        theTripToAddItemsTo = {theActualTrip._id} 
-                        getData = {this.props.getData}
+                            theTripToAddItemsTo = {theActualTrip._id} 
+                            getData = {this.props.getData}
                         />
                     </div>
                 </div>

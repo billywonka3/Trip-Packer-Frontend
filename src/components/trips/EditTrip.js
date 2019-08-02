@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class EditProject extends Component {
+class EditTrip extends Component {
   constructor(props){
     super(props);
     this.state = {
-        title: this.props.theProject.title, 
+        title: this.props.theTrip.title, 
+        description: this.props.theTrip.description
     }
   }
 
     
   handleFormSubmit = (event) => {
     const title = this.state.title;
+    const description = this.state.description;
 
     event.preventDefault();
 
-    axios.post(`http://localhost:5000/api/projects/update/${this.props.theProject._id}`,
-     { theTitle: title})
+    axios.post(`http://localhost:5000/api/trips/update/${this.props.theTrip._id}`,
+     { theTitle: title, theDescription: description })
     .then( () => {
-        this.props.getAllTheProjectsInAppJS();
+        this.props.getAllTheTripsInAppJS();
         this.props.resetEditingSituation();
     })
     .catch( error => console.log(error) )
@@ -40,6 +42,8 @@ class EditProject extends Component {
                 <input style={{padding: '5px', fontSize: '20px', margin: '5px'}} type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
             </div>
           
+            <input name="description" value={this.state.description} onChange={this.handleChange} />
+
             <input type="submit" value="Submit" />
         </form>
       </div>
@@ -47,4 +51,4 @@ class EditProject extends Component {
   }
 }
 
-export default EditProject;
+export default EditTrip;

@@ -11,8 +11,13 @@ function Navbar(props){
     return(
         <nav>
             {props.theUser && 
-                <Link to="/categories" style={{ textDecoration: 'none', margin: '10px' }}> Main Page </Link>
+                <Link to="/api/trips" style={{ textDecoration: 'none', margin: '10px' }}> Trips </Link>
             }
+
+            {props.theUser && 
+                <script type='text/javascript' src="https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js?width=100%&height=350&title=Miami, Florida&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=us&htColor=333333&ltColor=C7C7C7&displaySum=yes&displayHeader=yes"></script>
+            }
+
 
             {!props.theUser && 
                 <span>
