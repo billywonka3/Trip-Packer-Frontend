@@ -114,22 +114,25 @@ class App extends React.Component {
         }
 
         <Switch>
-          <Route exact path="/api/trips" render ={(props)=> <TripIndex
-            {...props} 
-            theUser = {this.state.currentlyLoggedIn} 
-            allTheTrips ={this.state.listOfTrips}
-            getData = {this.getAllTrips}
-            ready = {this.state.ready}
-            theUser = {this.state.currentlyLoggedIn}
-          />} />
+          <Route exact path="/api/trips" render ={(props)=> 
+            <TripIndex
+              {...props} 
+              allTheTrips ={this.state.listOfTrips}
+              getData = {this.getAllTrips}
+              ready = {this.state.ready}
+              theUser = {this.state.currentlyLoggedIn}
+            />}
+          />
 
-          <Route exact path="/api/trips/:theID" render ={(props)=> <TripDetails
-            {...props} 
-            allTheTrips ={this.state.listOfTrips}
-            ready = {this.state.ready}
-            getData = {this.getAllTrips}
-            theUser = {this.state.currentlyLoggedIn}
-          />} />
+          <Route exact path="/api/trips/:theID" render ={(props)=> 
+            <TripDetails
+              {...props} 
+              allTheTrips ={this.state.listOfTrips}
+              ready = {this.state.ready}
+              getData = {this.getAllTrips}
+              theUser = {this.state.currentlyLoggedIn}
+            />} 
+          />
         </Switch>
         
       </div>

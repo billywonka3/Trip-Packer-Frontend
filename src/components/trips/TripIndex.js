@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import './tripindex.css';
+
 import AddTrip from '../trips/AddTrip.js';
 import EditTrip from '../trips/EditTrip.js';
 

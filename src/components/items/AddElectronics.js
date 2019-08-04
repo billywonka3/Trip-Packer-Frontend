@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-class AddItem extends Component {
+class AddElectronics extends Component {
   constructor(props){
       super(props);
       this.state = { 
-        newCategory: "", 
         newName: "",
         // newWeight: "",
       };
@@ -14,17 +13,15 @@ class AddItem extends Component {
    
   handleFormSubmit = (event) => {
     event.preventDefault();
-    axios.post("http://localhost:5000/api/items", {
-        theCategory: this.state.newCategory,
+    axios.post("http://localhost:5000/api/electronics", {
         theName: this.state.newName,
         // theWeight: this.state.newWeight,
-        theTrip: this.props.theTripToAddItemsTo
+        theTrip: this.props.theTripToAddElectronicsTo
       })
     .then( () => {
         this.props.getData();
         // this function updates the list in TripIndex.js
         this.setState({
-          newCategory: "", 
           newName: "", 
           // newWeight: ""
         });
@@ -43,9 +40,7 @@ class AddItem extends Component {
         <form onSubmit={this.handleFormSubmit}>
         <label> Category: </label>
           <br/>
-          <input type="text" name="newCategory" value={this.state.newCategory} onChange={this.handleChange}/>
-          <br/>
-          <label> Item Name: </label>
+          <label> Electronics Name: </label>
           <br/>
           <textarea name="newName" value={this.state.newName} onChange={this.handleChange} />
           <br/>
@@ -61,4 +56,4 @@ class AddItem extends Component {
 }
 
 
-export default AddItem;
+export default AddElectronics;

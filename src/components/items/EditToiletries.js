@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class EditItem extends Component {
+class EditToiletries extends Component {
   constructor(props){
     super(props);
     this.state = {
-        category: this.props.theItem.category, 
-        name: this.props.theItem.name,
-        // weight: this.props.theItem.weight
+        name: this.props.theToiletries.name,
+        // weight: this.props.theToiletries.weight
     }
   }
     
   handleFormSubmit = (event) => {
-    const category = this.state.category;
     const name = this.state.name;
     // const weight =  this.state.weight;
 
     event.preventDefault();
 
-    axios.post(`http://localhost:5000/api/items/update/${this.props.theItem._id}`,
-        { theCategory: category,
-          theName: name,
+    axios.post(`http://localhost:5000/api/toiletries/update/${this.props.theToiletries._id}`,
+        { theName: name,
           // theweight: weight,
          })
     .then( () => {
@@ -40,10 +37,6 @@ class EditItem extends Component {
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
-            <div>
-                <input style={{padding: '5px', fontSize: '20px', margin: '5px'}} type="text" name="category" value={this.state.category} onChange={this.handleChange}/>
-            </div>
-         
             <input name="name" value={this.state.name} onChange={this.handleChange} />
             <input type="submit" value="Submit" />
         </form>
@@ -53,4 +46,4 @@ class EditItem extends Component {
 }
 
 
-export default EditItem;
+export default EditToiletries;
