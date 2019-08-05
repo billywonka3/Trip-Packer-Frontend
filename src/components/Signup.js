@@ -32,39 +32,43 @@ class Signup extends Component {
 
   render(){
     return(
-      <form onSubmit = {this.tryToSignUp}>
+      <form className="login-signup" onSubmit = {this.tryToSignUp}>
 
-        <h3>Signup For An Account</h3>
-
-        {/* <p class="hint-text">Sign in with your social media account</p>
-        <div class="social-btns text-center">import Geocode from "react-geocode";
-
-            <a href="#" class="btn google" ><i class="fa fa-google"></i></a>
-            <a href="#" class="btn facebook " ><i class="fa fa-facebook"></i></a>
-            <a href="#" class="btn twitter" ><i class="fa fa-twitter"></i></a>
-        </div>
-        <p class="hint-text"> Social login coming soon! </p>
-        <div class="or-seperator"><b>or</b></div> */}
+        <h2>Sign Up</h2>
 
         <div className="form-group">
           <legend>Username</legend>
           <input value={this.state.usernameInput}
-          name="usernameInput"
-          className="form-control input-lg" 
-          onChange={this.handleChange}
+            name="usernameInput"
+            className="form-control input-lg" 
+            onChange={this.handleChange}
           />
         </div>
 
         <div className="form-group">
           <legend>Password</legend>
           <input value={this.state.passwordInput} 
-          name="passwordInput"
-          className="form-control input-lg"
-          onChange={this.handleChange}
+            name="passwordInput"
+            className="form-control input-lg"
+            onChange={this.handleChange}
           />
         </div>
 
-        <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>
+        <div>
+          <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>
+        </div>
+
+        <div class="or-seperator"><b>or</b></div>
+
+        <p class="hint-text">Sign up with your social media account</p>
+        <div class="social-btns text-center">import Geocode from "react-geocode";
+            <a href="#" class="btn google" ><i class="fa fa-google"></i></a>
+            <a href="#" class="btn facebook " ><i class="fa fa-facebook"></i></a>
+            <a href="#" class="btn twitter" ><i class="fa fa-twitter"></i></a>
+        </div>
+        <p class="hint-text"> Social login coming soon! </p>
+
+
       </form>
     )
   }

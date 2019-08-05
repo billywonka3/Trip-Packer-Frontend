@@ -31,23 +31,15 @@ class Login extends Component {
 
   render(){
     return(
-      <form onSubmit = {this.tryToLogin}>
+      <form className="login-signup" onSubmit = {this.tryToLogin}>
 
-        <h2>Sign in</h2>
-        
-        {/* <p className="hint-text">Sign in with your social media account</p>
-        <div className="social-btns text-center">
-            <a href="#" className="btn google" ><i className="fa fa-google"></i></a>
-            <a href="#" className="btn facebook " ><i className="fa fa-facebook"></i></a>
-            <a href="#" className="btn twitter" ><i className="fa fa-twitter"></i></a>
-        </div>
-        <p className="hint-text"> Social login coming soon! </p>
-        <div className="or-seperator"><b>or</b></div> */}
+        <h2>Log in</h2>
 
         <div className="form-group">
           <legend>Username</legend>
           <input value={this.state.usernameInput}
             name="usernameInput"
+            className="form-control input-lg" 
             onChange={this.handleChange}
           />
         </div>
@@ -55,13 +47,24 @@ class Login extends Component {
           <legend>Password</legend>
           <input value={this.state.passwordInput} 
             name="passwordInput"
+            className="form-control input-lg" 
             onChange={this.handleChange}
           />
         </div>
 
         <div className="form-group center-it">
-          <button>Submit</button>
+        <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>
         </div>
+        
+        <div className="or-seperator"><b>or</b></div>
+        
+        <p className="hint-text">Sign in with your social media account</p>
+        <div className="social-btns text-center">
+            <a href="#" className="btn google" ><i className="fa fa-google"></i></a>
+            <a href="#" className="btn facebook " ><i className="fa fa-facebook"></i></a>
+            <a href="#" className="btn twitter" ><i className="fa fa-twitter"></i></a>
+        </div>
+        <p className="hint-text"> Social login coming soon! </p>
 
       </form>
     )

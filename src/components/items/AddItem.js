@@ -53,7 +53,7 @@ class AddItem extends Component {
           {/* <label> Weight: </label>
           <textarea name="newWeight" value={this.state.newWeight} onChange={this.handleChange} />
           <br/> */}
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Add to List" />
         </form>
       </div>
     )

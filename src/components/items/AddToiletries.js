@@ -6,7 +6,6 @@ class AddToiletries extends Component {
   constructor(props){
       super(props);
       this.state = { 
-        newCategory: "", 
         newName: "",
         // newWeight: "",
       };
@@ -23,7 +22,6 @@ class AddToiletries extends Component {
         this.props.getData();
         // this function updates the list in TripIndex.js
         this.setState({
-          newCategory: "", 
           newName: "", 
           // newWeight: ""
         });
@@ -40,11 +38,7 @@ class AddToiletries extends Component {
     return(
       <div>
         <form onSubmit={this.handleFormSubmit}>
-        <label> Category: </label>
-          <br/>
-          <input type="text" name="newCategory" value={this.state.newCategory} onChange={this.handleChange}/>
-          <br/>
-          <label> Toiletries Name: </label>
+          <label> Add Toiletries : </label>
           <br/>
           <textarea name="newName" value={this.state.newName} onChange={this.handleChange} />
           <br/>
@@ -52,7 +46,7 @@ class AddToiletries extends Component {
           {/* <label> Weight: </label>
           <textarea name="newWeight" value={this.state.newWeight} onChange={this.handleChange} />
           <br/> */}
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Add to List" />
         </form>
       </div>
     )
