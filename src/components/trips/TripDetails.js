@@ -4,8 +4,8 @@ import ScriptTag from 'react-script-tag';
 
 import './tripdetails.css';
 
-import AddItem from '../items/AddItem.js';
-import EditItem from '../items/EditItem.js';
+import AddClothing from '../items/AddClothing.js';
+import EditClothing from '../items/EditClothing.js';
 import AddToiletries from '../items/AddToiletries.js';
 import AddElectronics from '../items/AddElectronics.js';
 
@@ -24,8 +24,8 @@ class TripDetails extends Component{
         this.setState({editing: whichNumber})
     }
 
-    deleteItem = (theID) =>{
-        axios.delete('http://localhost:5000/api/items/'+theID)
+    deleteClothing = (theID) =>{
+        axios.delete('http://localhost:5000/api/clothing/'+theID)
         .then(()=>{
             this.props.getData();
         })
@@ -60,21 +60,21 @@ class TripDetails extends Component{
             return eachTrip._id === theID
         })
 
-        const showItems = () =>{
-            return theActualTrip.items.map((eachItem, index)=>{
-                // console.log(eachItem)
+        const showClothing = () =>{
+            return theActualTrip.clothing.map((eachClothing, index)=>{
+                // console.log(eachClothing)
                 if(this.state.editing !== index)
-                    return ( <li key={eachItem._id}>
-                                <h4>{eachItem.category}</h4>
-                                <h6>{eachItem.name}</h6>
+                    return ( <li key={eachClothing._id}>
+                                <h4>{eachClothing.category}</h4>
+                                <h6>{eachClothing.name}</h6>
                                 <button onClick = {()=>{this.edit(index)}}>Edit</button>
-                                <button onClick = {()=>{this.deleteItem(eachItem._id)}}>Delete</button>
+                                <button onClick = {()=>{this.deleteClothing(eachClothing._id)}}>Delete</button>
                             </li>
                     )
                 else
                     return(
-                        <EditItem
-                            theItem ={eachItem}
+                        <EditClothing
+                            theClothing ={eachClothing}
                             getAllTheTripsInAppJS = {this.props.getData}
                             resetEditingSituation = {this.resetEdit}
                         />
@@ -147,16 +147,16 @@ class TripDetails extends Component{
                             <h3>Clothing</h3>
                             <div>
                                 <hr />
-                                {theActualTrip.items.length > 0 && 
+                                {theActualTrip.clothing.length > 0 && 
                                     <ul className= "list-format">
-                                        {showItems()}
+                                        {showClothing()}
                                     </ul>                           
                                 }
                                 <hr /> 
                             </div>     
                             <div className="add-item"> 
-                                <AddItem 
-                                    theTripToAddItemsTo = {theActualTrip._id} 
+                                <AddClothing 
+                                    theTripToAddClothingTo = {theActualTrip._id} 
                                     getData = {this.props.getData}
                                 />
                             </div>

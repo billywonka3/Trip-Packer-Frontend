@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-class AddItem extends Component {
+class AddClothing extends Component {
   constructor(props){
       super(props);
       this.state = { 
@@ -14,11 +14,11 @@ class AddItem extends Component {
    
   handleFormSubmit = (event) => {
     event.preventDefault();
-    axios.post("http://localhost:5000/api/items", {
+    axios.post("http://localhost:5000/api/clothing", {
         theCategory: this.state.newCategory,
         theName: this.state.newName,
         // theWeight: this.state.newWeight,
-        theTrip: this.props.theTripToAddItemsTo
+        theTrip: this.props.theTripToAddClothingTo
       })
     .then( () => {
         this.props.getData();
@@ -45,7 +45,7 @@ class AddItem extends Component {
           <br/>
           <input type="text" name="newCategory" value={this.state.newCategory} onChange={this.handleChange}/>
           <br/>
-          <label> Item Name: </label>
+          <label> Clothing Name: </label>
           <br/>
           <input type="text" name="newName" value={this.state.newName} onChange={this.handleChange} />
           <br/>
@@ -61,4 +61,4 @@ class AddItem extends Component {
 }
 
 
-export default AddItem;
+export default AddClothing;

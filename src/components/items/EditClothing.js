@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class EditItem extends Component {
+class EditClothing extends Component {
   constructor(props){
     super(props);
     this.state = {
-        category: this.props.theItem.category, 
-        name: this.props.theItem.name,
-        // weight: this.props.theItem.weight
+        category: this.props.theClothing.category, 
+        name: this.props.theClothing.name,
+        // weight: this.props.theClothing.weight
     }
   }
     
@@ -18,7 +18,7 @@ class EditItem extends Component {
 
     event.preventDefault();
 
-    axios.post(`http://localhost:5000/api/items/update/${this.props.theItem._id}`,
+    axios.post(`http://localhost:5000/api/clothing/update/${this.props.theClothing._id}`,
         { theCategory: category,
           theName: name,
           // theweight: weight,
@@ -53,4 +53,4 @@ class EditItem extends Component {
 }
 
 
-export default EditItem;
+export default EditClothing;
