@@ -14,11 +14,16 @@
 
 .item-columns {
     display: flex;
+    margin: 0 50px;
+}
+.item-columns > div {
+    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin: 0 50px;
     border: solid;
+    margin: 0 5px;
     width: 20vw;
+    overflow-block: 
 }
 .item-columns span h3 {
     display: flex;
