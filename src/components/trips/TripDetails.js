@@ -7,9 +7,7 @@ import './tripdetails.css';
 import AddItem from '../items/AddItem.js';
 import EditItem from '../items/EditItem.js';
 import AddToiletries from '../items/AddToiletries.js';
-import EditToiletries from '../items/EditToiletries.js';
 import AddElectronics from '../items/AddElectronics.js';
-import EditElectronics from '../items/EditElectronics.js';
 
 class TripDetails extends Component{
     constructor(props){
@@ -22,13 +20,30 @@ class TripDetails extends Component{
     resetEdit = () =>{
         this.setState({editing: false})
     }
-
     edit = (whichNumber) =>{
         this.setState({editing: whichNumber})
     }
 
     deleteItem = (theID) =>{
         axios.delete('http://localhost:5000/api/items/'+theID)
+        .then(()=>{
+            this.props.getData();
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+    deleteToiletries = (theID) =>{
+        axios.delete('http://localhost:5000/api/toiletries/'+theID)
+        .then(()=>{
+            this.props.getData();
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+    deleteElectronics = (theID) =>{
+        axios.delete('http://localhost:5000/api/electronics/'+theID)
         .then(()=>{
             this.props.getData();
         })
@@ -47,10 +62,7 @@ class TripDetails extends Component{
 
         const showItems = () =>{
             return theActualTrip.items.map((eachItem, index)=>{
-                console.log(eachItem, '----=-=-=-==1-===--=----')
-                console.log(allTheTrips, '----=-=-=-==2-===--=----');
-                console.log(theID, '----=-=-=-==3-===--=----');
-                console.log(theActualTrip, '----=-=-=-==4-===--=----');
+                // console.log(eachItem)
                 if(this.state.editing !== index)
                     return ( <li key={eachItem._id}>
                                 <h4>{eachItem.category}</h4>
@@ -71,44 +83,24 @@ class TripDetails extends Component{
         }
 
         const showToiletries = () =>{
-            return theActualTrip.toiletries.map((eachToiletries, index)=>{
+            return theActualTrip.toiletries.map((eachToiletries)=>{
                 console.log(eachToiletries)
-                if(this.state.editing !== index)
-                    return ( <li key={eachToiletries._id}>
-                                <h6>{eachToiletries.name}</h6>
-                                <button onClick = {()=>{this.edit(index)}}>Edit</button>
-                                <button onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
-                            </li>
-                    )
-                else
-                    return(
-                        <EditToiletries
-                            theToiletries ={eachToiletries}
-                            getAllTheTripsInAppJS = {this.props.getData}
-                            resetEditingSituation = {this.resetEdit}
-                        />
-                    )
+                return ( <li key={eachToiletries._id}>
+                            <h6>{eachToiletries.name}</h6>
+                            <button onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
+                        </li>
+                )
             })  
         }
 
         const showElectronics = () =>{
-            return theActualTrip.electronics.map((eachElectronics, index)=>{
+            return theActualTrip.electronics.map((eachElectronics)=>{
                 console.log(eachElectronics)
-                if(this.state.editing !== index)
-                    return ( <li key={eachElectronics._id}>
-                                <h6>{eachElectronics.name}</h6>
-                                <button onClick = {()=>{this.edit(index)}}>Edit</button>
-                                <button onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
-                            </li>
-                    )
-                else
-                    return(
-                        <EditElectronics
-                            theElectronics ={eachElectronics}
-                            getAllTheTripsInAppJS = {this.props.getData}
-                            resetEditingSituation = {this.resetEdit}
-                        />
-                    )
+                return ( <li key={eachElectronics._id}>
+                            <h6>{eachElectronics.name}</h6>
+                            <button onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
+                        </li>
+                )
             })  
         }
 
@@ -153,16 +145,16 @@ class TripDetails extends Component{
                     <div className="item-columns">
                         <div className= "clothing">
                             <h3>Clothing</h3>
-                            <hr />
                             <div>
+                                <hr />
                                 {theActualTrip.items.length > 0 && 
-                                    <ul>
+                                    <ul className= "list-format">
                                         {showItems()}
                                     </ul>                           
                                 }
-                            </div>
-                            <hr />     
-                            <div className="add-item">
+                                <hr /> 
+                            </div>     
+                            <div className="add-item"> 
                                 <AddItem 
                                     theTripToAddItemsTo = {theActualTrip._id} 
                                     getData = {this.props.getData}
@@ -172,15 +164,15 @@ class TripDetails extends Component{
 
                         <div className= "toiletries">
                             <h3>Toiletries</h3>
-                            <hr />
                             <div>
+                                <hr />
                                 {theActualTrip.toiletries.length > 0 && 
                                     <ul>
                                         {showToiletries()}
                                     </ul>                           
                                 }
+                                <hr /> 
                             </div>
-                            <hr /> 
                             <div className= "add-item">
                                 <AddToiletries 
                                     theTripToAddToiletriesTo = {theActualTrip._id} 
@@ -191,15 +183,15 @@ class TripDetails extends Component{
 
                         <div className= "electronics">
                             <h3>Electronics</h3>
-                            <hr />
                             <div>
+                                <hr /> 
                                 {theActualTrip.electronics.length > 0 && 
                                     <ul>
                                         {showElectronics()}
                                     </ul>                           
                                 }
-                            </div>
-                            <hr /> 
+                                <hr /> 
+                            </div> 
                             <div className= "add-item">
                                 <AddElectronics 
                                     theTripToAddElectronicsTo = {theActualTrip._id} 
