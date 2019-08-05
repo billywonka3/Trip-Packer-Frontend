@@ -1,7 +1,4 @@
-.weather-bar {
-    display: flex;
-    justify-content: center;
-}
+/* Upper Trip Bars (Details & Weather) */
 .center {
     display: flex;
     justify-content: center;
@@ -11,24 +8,32 @@
     flex-direction: column;
     text-align: center;
 }
+.weather-bar {
+    display: flex;
+    justify-content: center;
+}
 
+/* Item Columns for Clothing, Toiletries, Electronics, & Special */
 .item-columns {
     display: flex;
     margin: 0 50px;
 }
-.item-columns > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    border: solid;
-    margin: 0 5px;
-    width: 20vw;
-    overflow-block: 
-}
-.item-columns span h3 {
+.item-columns h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+.item-columns > div {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    border: solid;
+    margin: 0 5px;
+    width: 20vw;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 .add-item {
     display: flex;

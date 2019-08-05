@@ -40,8 +40,8 @@ class TripIndex extends Component {
             return;
         }
 
-        const myTrips = this.props.allTheTrips.filter((eachP)=>{
-            return eachP.owner === this.props.theUser._id;
+        const myTrips = this.props.allTheTrips.filter((eachTrip)=>{
+            return eachTrip.owner === this.props.theUser._id;
         })
 
         return myTrips.map((trip, index) => {

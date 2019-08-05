@@ -40,6 +40,7 @@ class App extends React.Component {
   getAllTrips = () => {
     axios.get(`http://localhost:5000/api/trips`, {withCredentials: true})
     .then(responseFromApi => {
+      console.log(responseFromApi, '------response----')
       this.setState({
         listOfTrips: responseFromApi.data, ready: true
       })
@@ -117,7 +118,6 @@ class App extends React.Component {
           <Route exact path="/api/trips" render ={(props)=> 
             <TripIndex
               {...props} 
-              theUser = {this.state.currentlyLoggedIn} 
               allTheTrips ={this.state.listOfTrips}
               getData = {this.getAllTrips}
               ready = {this.state.ready}

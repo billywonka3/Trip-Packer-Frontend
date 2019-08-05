@@ -59,14 +59,14 @@ class Signup extends Component {
         </div>
 
         <div class="or-seperator"><b>or</b></div>
-
+{/* 
         <p class="hint-text">Sign up with your social media account</p>
         <div class="social-btns text-center">import Geocode from "react-geocode";
             <a href="#" class="btn google" ><i class="fa fa-google"></i></a>
             <a href="#" class="btn facebook " ><i class="fa fa-facebook"></i></a>
             <a href="#" class="btn twitter" ><i class="fa fa-twitter"></i></a>
         </div>
-        <p class="hint-text"> Social login coming soon! </p>
+        <p class="hint-text"> Social login coming soon! </p> */}
 
 
       </form>

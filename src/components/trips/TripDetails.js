@@ -41,13 +41,16 @@ class TripDetails extends Component{
         const allTheTrips = this.props.allTheTrips;
         const theID = this.props.match.params.theID;
 
-        const theActualTrip = allTheTrips.find((eachP)=>{
-            return eachP._id === theID
+        const theActualTrip = allTheTrips.find((eachTrip)=>{
+            return eachTrip._id === theID
         })
 
         const showItems = () =>{
             return theActualTrip.items.map((eachItem, index)=>{
-                console.log(eachItem)
+                console.log(eachItem, '----=-=-=-==1-===--=----')
+                console.log(allTheTrips, '----=-=-=-==2-===--=----');
+                console.log(theID, '----=-=-=-==3-===--=----');
+                console.log(theActualTrip, '----=-=-=-==4-===--=----');
                 if(this.state.editing !== index)
                     return ( <li key={eachItem._id}>
                                 <h4>{eachItem.category}</h4>
@@ -149,19 +152,16 @@ class TripDetails extends Component{
 
                     <div className="item-columns">
                         <div className= "clothing">
+                            <h3>Clothing</h3>
+                            <hr />
                             <div>
                                 {theActualTrip.items.length > 0 && 
-                                <span>
-                                    <h3>Clothing</h3>
-                                    <hr />
                                     <ul>
                                         {showItems()}
-                                    </ul>
-                                    <hr />                             
-                                </span> 
+                                    </ul>                           
                                 }
                             </div>
-
+                            <hr />     
                             <div className="add-item">
                                 <AddItem 
                                     theTripToAddItemsTo = {theActualTrip._id} 
@@ -171,19 +171,16 @@ class TripDetails extends Component{
                         </div>
 
                         <div className= "toiletries">
+                            <h3>Toiletries</h3>
+                            <hr />
                             <div>
                                 {theActualTrip.toiletries.length > 0 && 
-                                <span>
-                                    <h3>Toiletries</h3>
-                                    <hr />
                                     <ul>
                                         {showToiletries()}
-                                    </ul>
-                                    <hr />                             
-                                </span> 
+                                    </ul>                           
                                 }
                             </div>
-
+                            <hr /> 
                             <div className= "add-item">
                                 <AddToiletries 
                                     theTripToAddToiletriesTo = {theActualTrip._id} 
@@ -193,19 +190,16 @@ class TripDetails extends Component{
                         </div>
 
                         <div className= "electronics">
+                            <h3>Electronics</h3>
+                            <hr />
                             <div>
                                 {theActualTrip.electronics.length > 0 && 
-                                <span>
-                                    <h3>Electronics</h3>
-                                    <hr />
                                     <ul>
                                         {showElectronics()}
-                                    </ul>
-                                    <hr />                             
-                                </span> 
+                                    </ul>                           
                                 }
                             </div>
-
+                            <hr /> 
                             <div className= "add-item">
                                 <AddElectronics 
                                     theTripToAddElectronicsTo = {theActualTrip._id} 

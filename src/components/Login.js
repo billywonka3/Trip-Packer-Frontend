@@ -56,7 +56,7 @@ class Login extends Component {
         <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>
         </div>
         
-        <div className="or-seperator"><b>or</b></div>
+        {/* <div className="or-seperator"><b>or</b></div>
         
         <p className="hint-text">Sign in with your social media account</p>
         <div className="social-btns text-center">
@@ -64,7 +64,7 @@ class Login extends Component {
             <a href="#" className="btn facebook " ><i className="fa fa-facebook"></i></a>
             <a href="#" className="btn twitter" ><i className="fa fa-twitter"></i></a>
         </div>
-        <p className="hint-text"> Social login coming soon! </p>
+        <p className="hint-text"> Social login coming soon! </p> */}
 
       </form>
     )

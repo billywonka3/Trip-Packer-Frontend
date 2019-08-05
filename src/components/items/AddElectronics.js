@@ -40,7 +40,7 @@ class AddElectronics extends Component {
         <form onSubmit={this.handleFormSubmit}>
           <label> Add Electronics : </label>
           <br/>
-          <textarea name="newName" value={this.state.newName} onChange={this.handleChange} />
+          <input type="text" name="newName" value={this.state.newName} onChange={this.handleChange} />
           <br/>
 
           {/* <label> Weight: </label>
