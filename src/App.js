@@ -117,6 +117,7 @@ class App extends React.Component {
           <Route exact path="/api/trips" render ={(props)=> 
             <TripIndex
               {...props} 
+              theUser = {this.state.currentlyLoggedIn} 
               allTheTrips ={this.state.listOfTrips}
               getData = {this.getAllTrips}
               ready = {this.state.ready}

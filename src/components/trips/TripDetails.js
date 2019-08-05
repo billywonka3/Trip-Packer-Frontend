@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ScriptTag from 'react-script-tag';
 
 import './tripdetails.css';
 
 import AddItem from '../items/AddItem.js';
 import EditItem from '../items/EditItem.js';
-// import AddToiletries from '../items/AddToiletries.js';
-// import EditToiletries from '../items/EditToiletries.js';
-// import AddElectronics from '../items/AddElectronics.js';
-// import EditElectronics from '../items/EditElectronics.js';
+import AddToiletries from '../items/AddToiletries.js';
+import EditToiletries from '../items/EditToiletries.js';
+import AddElectronics from '../items/AddElectronics.js';
+import EditElectronics from '../items/EditElectronics.js';
 
 class TripDetails extends Component{
     constructor(props){
@@ -40,8 +41,8 @@ class TripDetails extends Component{
         const allTheTrips = this.props.allTheTrips;
         const theID = this.props.match.params.theID;
 
-        const theActualTrip = allTheTrips.find((eachTrip)=>{
-            return eachTrip._id === theID
+        const theActualTrip = allTheTrips.find((eachP)=>{
+            return eachP._id === theID
         })
 
         const showItems = () =>{
@@ -66,47 +67,47 @@ class TripDetails extends Component{
             })  
         }
 
-        // const showToiletries = () =>{
-        //     return theActualTrip.toiletries.map((eachToiletries, index)=>{
-        //         console.log(eachToiletries)
-        //         if(this.state.editing !== index)
-        //             return ( <li key={eachToiletries._id}>
-        //                         <h6>{eachToiletries.name}</h6>
-        //                         <button onClick = {()=>{this.edit(index)}}>Edit</button>
-        //                         <button onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
-        //                     </li>
-        //             )
-        //         else
-        //             return(
-        //                 <EditToiletries
-        //                     theToiletries ={eachToiletries}
-        //                     getAllTheTripsInAppJS = {this.props.getData}
-        //                     resetEditingSituation = {this.resetEdit}
-        //                 />
-        //             )
-        //     })  
-        // }
+        const showToiletries = () =>{
+            return theActualTrip.toiletries.map((eachToiletries, index)=>{
+                console.log(eachToiletries)
+                if(this.state.editing !== index)
+                    return ( <li key={eachToiletries._id}>
+                                <h6>{eachToiletries.name}</h6>
+                                <button onClick = {()=>{this.edit(index)}}>Edit</button>
+                                <button onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
+                            </li>
+                    )
+                else
+                    return(
+                        <EditToiletries
+                            theToiletries ={eachToiletries}
+                            getAllTheTripsInAppJS = {this.props.getData}
+                            resetEditingSituation = {this.resetEdit}
+                        />
+                    )
+            })  
+        }
 
-        // const showElectronics = () =>{
-        //     return theActualTrip.electronics.map((eachElectronics, index)=>{
-        //         console.log(eachElectronics)
-        //         if(this.state.editing !== index)
-        //             return ( <li key={eachElectronics._id}>
-        //                         <h6>{eachElectronics.name}</h6>
-        //                         <button onClick = {()=>{this.edit(index)}}>Edit</button>
-        //                         <button onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
-        //                     </li>
-        //             )
-        //         else
-        //             return(
-        //                 <EditElectronics
-        //                     theElectronics ={eachElectronics}
-        //                     getAllTheTripsInAppJS = {this.props.getData}
-        //                     resetEditingSituation = {this.resetEdit}
-        //                 />
-        //             )
-        //     })  
-        // }
+        const showElectronics = () =>{
+            return theActualTrip.electronics.map((eachElectronics, index)=>{
+                console.log(eachElectronics)
+                if(this.state.editing !== index)
+                    return ( <li key={eachElectronics._id}>
+                                <h6>{eachElectronics.name}</h6>
+                                <button onClick = {()=>{this.edit(index)}}>Edit</button>
+                                <button onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
+                            </li>
+                    )
+                else
+                    return(
+                        <EditElectronics
+                            theElectronics ={eachElectronics}
+                            getAllTheTripsInAppJS = {this.props.getData}
+                            resetEditingSituation = {this.resetEdit}
+                        />
+                    )
+            })  
+        }
 
         if(this.props.ready)
             return(
@@ -137,7 +138,11 @@ class TripDetails extends Component{
                                 <span><input id="longitude" type="text" placeholder="Lng"></span>
                             </p>
                         </form> */}
-                        {/* <ScriptTag type='text/javascript' src='https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js?width=100%&height=350&title=Miami, Florida&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=us&htColor=333333&ltColor=C7C7C7&displaySum=yes&displayHeader=yes'/>; */}
+                        <ScriptTag 
+                            isHydrating={true}
+                            type='text/javascript' 
+                            src='https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js?width=100%&height=350&title=Miami, Florida&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=us&htColor=333333&ltColor=C7C7C7&displaySum=yes&displayHeader=yes'
+                        />;
                     </div>
 
                     <hr />
@@ -165,7 +170,7 @@ class TripDetails extends Component{
                             </div>
                         </div>
 
-                        {/* <div className= "toiletries"}>
+                        <div className= "toiletries">
                             <div>
                                 {theActualTrip.toiletries.length > 0 && 
                                 <span>
@@ -185,9 +190,9 @@ class TripDetails extends Component{
                                     getData = {this.props.getData}
                                 />
                             </div>
-                        </div> */}
+                        </div>
 
-                        {/* <div className= "electronics"}>
+                        <div className= "electronics">
                             <div>
                                 {theActualTrip.electronics.length > 0 && 
                                 <span>
@@ -207,7 +212,7 @@ class TripDetails extends Component{
                                     getData = {this.props.getData}
                                 />
                             </div>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             )
