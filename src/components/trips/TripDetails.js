@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ScriptTag from 'react-script-tag';
+import ReactWeather from 'react-open-weather';
 
+import 'react-open-weather/lib/css/ReactWeather.css';
 import './tripdetails.css';
 
 import AddClothing from '../items/AddClothing.js';
@@ -16,7 +17,7 @@ class TripDetails extends Component{
             editing: false,
         }
     }
-
+          
     resetEdit = () =>{
         this.setState({editing: false})
     }
@@ -25,7 +26,7 @@ class TripDetails extends Component{
     }
 
     deleteClothing = (theID) =>{
-        axios.delete('http://localhost:5000/api/clothing/'+theID)
+        axios.delete('http://locashowClothinglothing/'+theID)
         .then(()=>{
             this.props.getData();
         })
@@ -114,30 +115,26 @@ class TripDetails extends Component{
                                 <h5> {theActualTrip.description} </h5>
                             </span>
                         </div>
+                        <div>
+                            <h4 id="text-center"> Enter Location: </h4>
+                            <form id="location-form">
+                                <input type="text" id="location-input" className="form-control form-control-lg"/>
+                                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                            </form>
+                        </div>
                     </div>
 
                     <hr />
 
-                    <div className = "weatherbar" >
-                        {/* <form id="gmaps" method="post" onsubmit="return false">
-                            <p>
-                                <span>Location</span>
-                                <span><input id="location" type="text" placeholder="Address" value="Boston, MA"></span>
-                            </p>
-                            <p class="coords-input">
-                                <span>Latitude</span>
-                                <span><input id="latitude" type="text" placeholder="Lat"></span>
-                            </p>
-                            <p class="coords-input">
-                                <span>Longitude</span>
-                                <span><input id="longitude" type="text" placeholder="Lng"></span>
-                            </p>
-                        </form> */}
-                        <ScriptTag 
-                            isHydrating={true}
-                            type='text/javascript' 
-                            src='https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js?width=100%&height=350&title=Miami, Florida&textColor=333333&bgColor=FFFFFF&transparency=false&skyColor=undefined&fontFamily=Default&customFont=&units=us&htColor=333333&ltColor=C7C7C7&displaySum=yes&displayHeader=yes'
-                        />;
+                    <div>
+                        <div className="container weather-bar">
+                            <ReactWeather 
+                                forecast="5days"
+                                apikey="OPEN_WEATHER_KEY"
+                                type="city"
+                                city="Munich"
+                            />
+                        </div>
                     </div>
 
                     <hr />

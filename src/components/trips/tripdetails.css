@@ -1,7 +1,7 @@
 /* Upper Trip Bars (Details & Weather) */
 .center {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 .trip-details {
     display: flex;

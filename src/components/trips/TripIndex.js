@@ -53,8 +53,8 @@ class TripIndex extends Component {
                         </Link>
                         <p style={{maxWidth: '400px'}} > {trip.description} </p>
 
-                        <button onClick={()=>{this.changeEditing(index)}}> Edit This Trip </button>
-                        <button onClick = {()=>{this.deleteTrip(trip._id)}}> Delete This Trip </button>
+                        <button onClick={()=>{this.changeEditing(index)}}> Edit </button>
+                        <button onClick = {()=>{this.deleteTrip(trip._id)}}> Delete </button>
                     </div>
                 )
             } else {

@@ -28,19 +28,10 @@ class App extends React.Component {
     // this.service = new AuthService();
   }
 
-  // getGeocodeKey = () => {
-  //   axios.get(`http://localhost:5000/api/geocode`, {withCredentials: true})
-  //   .then(responseFromApi => {
-  //     this.setState({
-  //       listOfTrips: responseFromApi.data, ready: true
-  //     })
-  //   })
-  // }
-
   getAllTrips = () => {
     axios.get(`http://localhost:5000/api/trips`, {withCredentials: true})
     .then(responseFromApi => {
-      console.log(responseFromApi, '------response----')
+      console.log(responseFromApi, '----response----')
       this.setState({
         listOfTrips: responseFromApi.data, ready: true
       })
