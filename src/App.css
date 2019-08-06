@@ -1,10 +1,11 @@
 nav {
   display: flex;
   justify-content: space-evenly;
+  align-content: center;
   background: black;
   color: white;
-  height: 6vh;
-  padding-top: 1vh;
+  height: 35px;
+  padding-top: 5px;
 }
 .centralMSG {
   margin: 0 20px;

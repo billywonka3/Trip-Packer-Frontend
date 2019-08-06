@@ -15,9 +15,14 @@ class TripDetails extends Component{
         super(props)
         this.state = {
             editing: false,
+            citySearch: "",
         }
     }
           
+    handleChange = (event) => {
+        this.setState({searchTerm: event.target.value})
+    }
+
     resetEdit = () =>{
         this.setState({editing: false})
     }
@@ -26,7 +31,7 @@ class TripDetails extends Component{
     }
 
     deleteClothing = (theID) =>{
-        axios.delete('http://locashowClothinglothing/'+theID)
+        axios.delete('http://localhost:5000/api/clothing/'+theID)
         .then(()=>{
             this.props.getData();
         })
@@ -52,6 +57,7 @@ class TripDetails extends Component{
             console.log(err)
         })
     }
+
 
     render(){
         const allTheTrips = this.props.allTheTrips;
@@ -85,10 +91,12 @@ class TripDetails extends Component{
 
         const showToiletries = () =>{
             return theActualTrip.toiletries.map((eachToiletries)=>{
-                console.log(eachToiletries)
+                // console.log(eachToiletries)
                 return ( <li key={eachToiletries._id}>
-                            <h6>{eachToiletries.name}</h6>
-                            <button onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
+                            <span className="row">
+                                <h6>{eachToiletries.name}</h6>
+                                <button onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
+                            </span>
                         </li>
                 )
             })  
@@ -96,7 +104,7 @@ class TripDetails extends Component{
 
         const showElectronics = () =>{
             return theActualTrip.electronics.map((eachElectronics)=>{
-                console.log(eachElectronics)
+                // console.log(eachElectronics)
                 return ( <li key={eachElectronics._id}>
                             <h6>{eachElectronics.name}</h6>
                             <button onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
@@ -116,9 +124,9 @@ class TripDetails extends Component{
                             </span>
                         </div>
                         <div>
-                            <h4 id="text-center"> Enter Location: </h4>
+                            <h4 id="text-center"> Enter nearest city : </h4>
                             <form id="location-form">
-                                <input type="text" id="location-input" className="form-control form-control-lg"/>
+                                <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChange} value={this.state.searchTerm} />
                                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
                             </form>
                         </div>
@@ -130,9 +138,9 @@ class TripDetails extends Component{
                         <div className="container weather-bar">
                             <ReactWeather 
                                 forecast="5days"
-                                apikey="OPEN_WEATHER_KEY"
+                                apikey="4a2c6efcec1fdfeff469545e50e9d1d3"
                                 type="city"
-                                city="Munich"
+                                city={this.state.searchTerm}
                             />
                         </div>
                     </div>

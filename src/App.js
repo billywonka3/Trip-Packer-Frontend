@@ -1,6 +1,8 @@
 import React from 'react';
-import './App.css';
+import axios from 'axios';
 import {Route, Switch} from 'react-router-dom';
+
+import './App.css';
 
 import TripIndex from './components/trips/TripIndex.js'
 import TripDetails from './components/trips/TripDetails.js';
@@ -10,8 +12,7 @@ import Login from './components/Login.js';
 // import AuthService from './services/AuthService.js';
 
 import Navbar from './components/Navbar.js'
-
-import axios from 'axios';
+import Home from './components/Home.js'
 
 
 class App extends React.Component {
@@ -31,7 +32,7 @@ class App extends React.Component {
   getAllTrips = () => {
     axios.get(`http://localhost:5000/api/trips`, {withCredentials: true})
     .then(responseFromApi => {
-      console.log(responseFromApi, '----response----')
+      // console.log(responseFromApi, '----response----')
       this.setState({
         listOfTrips: responseFromApi.data, ready: true
       })
@@ -104,6 +105,8 @@ class App extends React.Component {
             toggleForm = {this.toggleForm}
           />
         }
+
+        <Home>  </Home>
 
         <Switch>
           <Route exact path="/api/trips" render ={(props)=> 

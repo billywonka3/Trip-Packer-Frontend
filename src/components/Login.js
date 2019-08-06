@@ -29,6 +29,12 @@ class Login extends Component {
       })
   }
 
+  hidePassword = () => {
+    let x = document.getElementById("thePassword");
+    x.type === "password"? x.type = "text":x.type = "password";
+  } 
+
+
   render(){
     return(
       <form className="login-signup" onSubmit = {this.tryToLogin}>
@@ -45,12 +51,16 @@ class Login extends Component {
         </div>
         <div className="form-group">
           <legend>Password</legend>
-          <input value={this.state.passwordInput} 
+          <input type='password' value={this.state.passwordInput} 
+            id="thePassword"
             name="passwordInput"
             className="form-control input-lg" 
             onChange={this.handleChange}
           />
         </div>
+        {/* <div>
+          <input type="checkbox" onClick={this.hidePassword}></input>Hide/Show Password
+        </div> */}
 
         <div className="form-group center-it">
         <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>
