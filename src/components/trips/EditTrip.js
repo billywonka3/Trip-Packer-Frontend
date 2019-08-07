@@ -36,14 +36,14 @@ class EditTrip extends Component {
 
   render(){
     return (
-      <div>   
-        <form onSubmit={this.handleFormSubmit}>
+      <div style= {{marginTop: '22.5px'}}>   
+        <form onSubmit={this.handleFormSubmit} style={{margin: '5px', padding: '5px'}} >
             <div>
-                <input style={{padding: '5px', fontSize: '20px', margin: '5px'}} type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
+              <input style={{fontSize: '20px'}} type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
             </div>
-          
-            <input name="description" value={this.state.description} onChange={this.handleChange} />
-
+            <div>
+              <textarea name="description" value={this.state.description} onChange={this.handleChange} />
+            </div>
             <input type="submit" value="Submit" />
         </form>
       </div>

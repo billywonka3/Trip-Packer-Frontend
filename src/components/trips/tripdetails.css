@@ -13,6 +13,9 @@
     display: flex;
     justify-content: center;
 }
+.loc-form-div {
+    padding-top: 25px;
+}
 
 /* Item Columns for Clothing, Toiletries, Electronics, & Special */
 .item-columns {

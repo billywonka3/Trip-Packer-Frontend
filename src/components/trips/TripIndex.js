@@ -51,7 +51,7 @@ class TripIndex extends Component {
                         <Link to={`/api/trips/${trip._id}`}>
                             <h3>{trip.title}</h3>
                         </Link>
-                        <p style={{maxWidth: '400px'}} > {trip.description} </p>
+                        <p style={{maxWidth: '400px'}}> {trip.description} </p>
 
                         <button onClick={()=>{this.changeEditing(index)}}> Edit </button>
                         <button onClick = {()=>{this.deleteTrip(trip._id)}}> Delete </button>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ReactWeather from 'react-open-weather';
+// import ReactWeather from 'react-open-weather';
 
 import 'react-open-weather/lib/css/ReactWeather.css';
 import './tripdetails.css';
@@ -15,12 +15,31 @@ class TripDetails extends Component{
         super(props)
         this.state = {
             editing: false,
-            citySearch: "",
+            searchCity: "",
+            searchCountry: "",
         }
     }
           
-    handleChange = (event) => {
-        this.setState({searchTerm: event.target.value})
+    handleChangeCity = (event) => {
+        this.setState({searchCity: event.target.value})
+    }
+    handleChangeCountry = (event) => {
+        this.setState({searchCountry: event.target.value})
+    }
+    getForecast = ()=>{
+        axios.get(`https://openweathermap.org/data/2.5/forecast?q=${this.state.searchCity},${this.state.searchCountry}&appid=b6907d289e10d714a6e88b30761fae22`)
+        .then((response) =>{
+            for (let i = 0; i < 40; i+= 8) {
+                console.log("5 Days of Data", response.data.list[i])
+            }
+            console.log("All the data", response.data);
+        })
+        .catch((err) =>{
+            console.log(err)
+        })
+    }
+    componentDidMount() {
+        this.getForecast()
     }
 
     resetEdit = () =>{
@@ -50,10 +69,10 @@ class TripDetails extends Component{
     }
     deleteElectronics = (theID) =>{
         axios.delete('http://localhost:5000/api/electronics/'+theID)
-        .then(()=>{
+        .then(() =>{
             this.props.getData();
         })
-        .catch((err)=>{
+        .catch((err) =>{
             console.log(err)
         })
     }
@@ -123,10 +142,12 @@ class TripDetails extends Component{
                                 <h5> {theActualTrip.description} </h5>
                             </span>
                         </div>
-                        <div>
-                            <h4 id="text-center"> Enter nearest city : </h4>
+                        <div className="loc-form-div">
                             <form id="location-form">
-                                <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChange} value={this.state.searchTerm} />
+                                <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChangeCity} value={this.state.searchCity} placeholder="Enter City"/>
+                                <br/>
+                                <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChangeCountry} value={this.state.searchCountry}  placeholder="Enter Country"/>
+                                <br/>
                                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
                             </form>
                         </div>
@@ -136,12 +157,12 @@ class TripDetails extends Component{
 
                     <div>
                         <div className="container weather-bar">
-                            <ReactWeather 
+                            {/* <ReactWeather 
                                 forecast="5days"
-                                apikey="4a2c6efcec1fdfeff469545e50e9d1d3"
+                                apikey="b6907d289e10d714a6e88b30761fae22"
                                 type="city"
                                 city={this.state.searchTerm}
-                            />
+                            /> */}
                         </div>
                     </div>
 
