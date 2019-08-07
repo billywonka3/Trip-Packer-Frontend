@@ -1,6 +1,28 @@
+.trip-main{
+  display: flex;
+  justify-content: center;
+  
+}
+.trip-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.trip-box1 {
+  margin-bottom: 40px;
+  border: solid;
+  width: 480px;
+  padding: 0px 20px 25px 20px;
+}
+.trip-box2 {
+  margin-bottom: 40px;
+  border: solid;
+  width: 480px;
+  padding: 10px 20px 15px 20px;
+}
 textarea {
-  height: 7.5vh;
-  width: 43.8%;
+  height: 10vh;
+  width: 470px;
   box-sizing: border-box;	
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

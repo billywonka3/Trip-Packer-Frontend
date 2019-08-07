@@ -47,7 +47,7 @@ class TripIndex extends Component {
         return myTrips.map((trip, index) => {
             if(this.state.editing !== index){
                 return (
-                    <div key={trip._id}>
+                    <div key={trip._id} className="trip-box1">
                         <Link to={`/api/trips/${trip._id}`}>
                             <h3>{trip.title}</h3>
                         </Link>
@@ -72,12 +72,12 @@ class TripIndex extends Component {
     render(){
         if(this.props.ready)
             return(
-                <div>
-                    <div style={{width: '60%', float:"left"}}>
+                <div className="trip-main">
+                    <div className="trip-column">
                         {this.showTrips()}
-                    </div>
-                    <div style={{width: '40%', float:"right"}}>
-                        <AddTrip getData={this.props.getData}/>
+                        <div className="trip-box2">
+                            <AddTrip getData={this.props.getData}/>
+                        </div>
                     </div>
                 </div>
             )

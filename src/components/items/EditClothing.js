@@ -41,11 +41,12 @@ class EditClothing extends Component {
       <div>
         <form onSubmit={this.handleFormSubmit}>
             <div>
-                <input style={{padding: '5px', fontSize: '20px', margin: '5px'}} type="text" name="category" value={this.state.category} onChange={this.handleChange}/>
+              <input style={{padding: '5px', width: '100px', fontSize: '16px'}} type="text" 
+                     name="category" value={this.state.category} onChange={this.handleChange}/>
+              <input name="name" value={this.state.name} onChange={this.handleChange} />
+              <br/>
+              <input type="submit" value="Submit" />
             </div>
-         
-            <input name="name" value={this.state.name} onChange={this.handleChange} />
-            <input type="submit" value="Submit" />
         </form>
       </div>
     )

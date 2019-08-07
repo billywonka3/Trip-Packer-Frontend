@@ -16,11 +16,16 @@
 .loc-form-div {
     padding-top: 25px;
 }
+li {
+    margin: 0px;
+}
 
 /* Item Columns for Clothing, Toiletries, Electronics, & Special */
 .item-columns {
     display: flex;
     margin: 0 50px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .item-columns h3 {
     display: flex;
@@ -34,8 +39,8 @@
     flex-direction: column;
     /* justify-content: space-evenly; */
     border: solid;
-    margin: 0 5px;
-    width: 300px;
+    margin: 0 5px 20px 0;
+    width: 350px;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }

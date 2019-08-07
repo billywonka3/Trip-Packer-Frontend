@@ -37,7 +37,7 @@ class EditTrip extends Component {
   render(){
     return (
       <div style= {{marginTop: '22.5px'}}>   
-        <form onSubmit={this.handleFormSubmit} style={{margin: '5px', padding: '5px'}} >
+        <form onSubmit={this.handleFormSubmit} >
             <div>
               <input style={{fontSize: '20px'}} type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
             </div>

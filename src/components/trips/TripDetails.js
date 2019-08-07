@@ -17,6 +17,7 @@ class TripDetails extends Component{
             editing: false,
             searchCity: "",
             searchCountry: "",
+            forecast: [],
         }
     }
           
@@ -31,6 +32,7 @@ class TripDetails extends Component{
         .then((response) =>{
             for (let i = 0; i < 40; i+= 8) {
                 console.log("5 Days of Data", response.data.list[i])
+                // this.setstate.
             }
             console.log("All the data", response.data);
         })
@@ -112,7 +114,7 @@ class TripDetails extends Component{
             return theActualTrip.toiletries.map((eachToiletries)=>{
                 // console.log(eachToiletries)
                 return ( <li key={eachToiletries._id}>
-                            <span className="row">
+                            <span className="list-row">
                                 <h6>{eachToiletries.name}</h6>
                                 <button onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
                             </span>
@@ -130,6 +132,10 @@ class TripDetails extends Component{
                         </li>
                 )
             })  
+        }
+
+        const showForecast = () => {
+            return 
         }
 
         if(this.props.ready)
@@ -157,6 +163,7 @@ class TripDetails extends Component{
 
                     <div>
                         <div className="container weather-bar">
+
                             {/* <ReactWeather 
                                 forecast="5days"
                                 apikey="b6907d289e10d714a6e88b30761fae22"
