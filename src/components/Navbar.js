@@ -24,7 +24,9 @@ function Navbar(props){
             }
             
             {props.theUser && 
-                <span className='centralMSG'> Welcome, {props.theUser.username}. Let's plan for your trip. </span>
+                <span className='centralMSG'> 
+                    Welcome, {props.theUser.username}. Let's plan for your trip. 
+                </span>
             }
 
             {props.theUser && 

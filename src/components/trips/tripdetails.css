@@ -7,7 +7,15 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 25vw;
+    width: 50vw;
+    position: relative;
+    /* top: -15px; */
+
+}
+.coordinates {
+    font-size: 16px !important;
+    position: relative;
+    top: 22px;
 }
 .weather-bar {
     display: flex;
@@ -16,11 +24,17 @@
 .loc-form-div {
     padding-top: 25px;
 }
-li {
-    margin: 0px;
-}
+
 
 /* Item Columns for Clothing, Toiletries, Electronics, & Special */
+h4 {
+    margin-block-start: 10px;
+    margin-block-end: 8px;
+}
+p {
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+}
 .item-columns {
     display: flex;
     margin: 0 50px;
@@ -49,6 +63,35 @@ li {
     justify-content: center;
     margin-bottom: 12px;
 }
-/* .list-format > * {
+ul {
+    margin: 0;
+}
+.list-and-btn {
     display: flex;
-} */
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: none;
+    padding-right: 10px;
+}
+.delete.btn {
+    /* height: 1vh;
+    width: 3vw; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.weather-bar {
+    /* color: white; */
+    overflow: hidden;
+}
+
+.weather-bar iframe {
+    margin-top: -150px;
+    overflow: hidden;
+
+}
+
+iframe > html {
+    overflow: hidden;
+}

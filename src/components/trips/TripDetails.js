@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import ReactWeather from 'react-open-weather';
 
-import 'react-open-weather/lib/css/ReactWeather.css';
 import './tripdetails.css';
 
 import AddClothing from '../items/AddClothing.js';
@@ -17,31 +15,70 @@ class TripDetails extends Component{
             editing: false,
             searchCity: "",
             searchCountry: "",
-            forecast: [],
+            latitude: "",
+            longitude: "",
+            forecast: ""
         }
     }
           
     handleChangeCity = (event) => {
+        event.preventDefault();
+        // console.log(event)
+        // console.log("city is above")
         this.setState({searchCity: event.target.value})
+        console.log(this.state.searchCity)
+        this.getLatLong()
+        this.getForecast()
+
     }
     handleChangeCountry = (event) => {
+        event.preventDefault();
+        // console.log(event)
+        // console.log("country is above")
         this.setState({searchCountry: event.target.value})
-    }
-    getForecast = ()=>{
-        axios.get(`https://openweathermap.org/data/2.5/forecast?q=${this.state.searchCity},${this.state.searchCountry}&appid=b6907d289e10d714a6e88b30761fae22`)
-        .then((response) =>{
-            for (let i = 0; i < 40; i+= 8) {
-                console.log("5 Days of Data", response.data.list[i])
-                // this.setstate.
-            }
-            console.log("All the data", response.data);
-        })
-        .catch((err) =>{
-            console.log(err)
-        })
-    }
-    componentDidMount() {
+        console.log(this.state.searchCountry)
+        this.getLatLong()
         this.getForecast()
+    }
+    
+    getLatLong = ()=>{
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.searchCity},+${this.state.searchCountry}&key=`)
+        // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=Paris,+France&key=AIzaSyDJb6Ct7BeGZ8wsI04hI0pRe2t6uC-2pyY`)
+            .then((response) =>{
+                console.log("All the data", response);
+                this.setState({latitude: response.data.results[0].geometry.location.lat})
+                // console.log(this.state.latitude)
+                this.setState({longitude: response.data.results[0].geometry.location.lng})
+                // console.log(this.state.longitude)
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+    }
+
+    getForecast = ()=>{
+        axios.get(`https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en.js`)
+        // axios.get(`https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js`)
+            .then((response) =>{
+                
+                // console.log("Darksky Widget", response);
+                this.setState({forecast: `https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en.js`})
+                // console.log(`https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en?domain=&quot;+encodeURIComponent(window.location.href)+&quot;&amp;auth=1565285343_4a83196ed81f764cbec954f01ac0b1c8&amp;`)
+                console.log(this.state.forecast)
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+    }
+
+    componentDidMount() {
+        this.getLatLong()
+        this.getForecast()
+
+        const script = document.createElement("script");
+        script.src = `https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en.js`
+        script.async = true;
+        document.body.appendChild(script);
     }
 
     resetEdit = () =>{
@@ -88,13 +125,30 @@ class TripDetails extends Component{
             return eachTrip._id === theID
         })
 
+        const showCoordinates  = () =>{
+            return(
+                <div className= "coordinates">
+                    <p>Latitude  : {this.state.latitude}</p>
+                    <p>Longitude : {this.state.longitude}</p>
+                </div>
+            )
+        }
+
+        // const showForecast = () => {    
+        //     return(
+        //         <div>
+        //             {this.getForecast()}
+        //         </div>
+        //     )
+        // }
+
         const showClothing = () =>{
             return theActualTrip.clothing.map((eachClothing, index)=>{
                 // console.log(eachClothing)
                 if(this.state.editing !== index)
                     return ( <li key={eachClothing._id}>
                                 <h4>{eachClothing.category}</h4>
-                                <h6>{eachClothing.name}</h6>
+                                <p>{eachClothing.name}</p>
                                 <button onClick = {()=>{this.edit(index)}}>Edit</button>
                                 <button onClick = {()=>{this.deleteClothing(eachClothing._id)}}>Delete</button>
                             </li>
@@ -113,11 +167,15 @@ class TripDetails extends Component{
         const showToiletries = () =>{
             return theActualTrip.toiletries.map((eachToiletries)=>{
                 // console.log(eachToiletries)
-                return ( <li key={eachToiletries._id}>
-                            <span className="list-row">
-                                <h6>{eachToiletries.name}</h6>
-                                <button onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
-                            </span>
+                return ( <li key={eachToiletries._id} >
+                            <div className="list-and-btn">
+                                <div>
+                                    <p>{eachToiletries.name}</p>
+                                </div>
+                                <p>
+                                    <button className="delete-btn" onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
+                                </p>
+                            </div>
                         </li>
                 )
             })  
@@ -127,36 +185,54 @@ class TripDetails extends Component{
             return theActualTrip.electronics.map((eachElectronics)=>{
                 // console.log(eachElectronics)
                 return ( <li key={eachElectronics._id}>
-                            <h6>{eachElectronics.name}</h6>
-                            <button onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
+                            <div className="list-and-btn">
+                                <div>
+                                    <p>{eachElectronics.name}</p>
+                                </div>
+                                <p>
+                                    <button className="delete-btn" onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
+                                </p>
+                            </div>
                         </li>
                 )
             })  
         }
 
-        const showForecast = () => {
-            return 
+        const showWidget = () => {
+            return(
+                <iframe 
+                    height= "600px"
+                    width="600px"
+                    src={this.state.forecast}>
+                </iframe>
+            )
         }
+
 
         if(this.props.ready)
             return(
                 <div style={{paddingTop: '20px'}}>
+
                     <div className="center">
-                        <div className = "trip-details">
+                        <div className= "trip-details">
                             <span>
                                 <h2> {theActualTrip.title} </h2>
                                 <h5> {theActualTrip.description} </h5>
                             </span>
                         </div>
+                    </div>
+                    <div className="center">
                         <div className="loc-form-div">
                             <form id="location-form">
                                 <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChangeCity} value={this.state.searchCity} placeholder="Enter City"/>
                                 <br/>
                                 <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChangeCountry} value={this.state.searchCountry}  placeholder="Enter Country"/>
-                                <br/>
-                                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                                {/* <br/>
+                                <button onClick = {()=>{this.getLatLong()}}
+                                        className="btn btn-primary btn-block">Submit</button> */}
                             </form>
                         </div>
+                        {showCoordinates()}
                     </div>
 
                     <hr />
@@ -164,12 +240,8 @@ class TripDetails extends Component{
                     <div>
                         <div className="container weather-bar">
 
-                            {/* <ReactWeather 
-                                forecast="5days"
-                                apikey="b6907d289e10d714a6e88b30761fae22"
-                                type="city"
-                                city={this.state.searchTerm}
-                            /> */}
+                            {showWidget()}
+        
                         </div>
                     </div>
 
