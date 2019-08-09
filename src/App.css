@@ -21,7 +21,7 @@ nav {
 }
 
 /*------------------ Login Pages ------------------*/
-.signup-background {
+/* .signup-background {
     background-image: url(/images/backgrounds/cubicle.jpg); 
     background-size: cover; 
     background-repeat: no-repeat; 
@@ -30,7 +30,7 @@ nav {
     background-image: url(/images/backgrounds/japanese-doors3.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-  }
+  } */
   
   #login-menu {
     padding: 30px; }

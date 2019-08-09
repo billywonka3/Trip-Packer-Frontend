@@ -67,7 +67,6 @@ class App extends React.Component {
   componentDidMount() {
       this.getAllTrips();
       this.getCurrentlyLoggedInUser();
-      // this.getGeocodeKey();
   }
 
   logout = () =>{
@@ -106,10 +105,14 @@ class App extends React.Component {
           />
         }
 
-        <Home>  </Home>
+        <Route exact path="/" render ={()=> 
+          <Home
+            
+          />}
+        />
 
         <Switch>
-          <Route exact path="/api/trips" render ={(props)=> 
+          <Route exact path="/trips" render ={(props)=> 
             <TripIndex
               {...props} 
               allTheTrips ={this.state.listOfTrips}
@@ -119,7 +122,7 @@ class App extends React.Component {
             />}
           />
 
-          <Route exact path="/api/trips/:theID" render ={(props)=> 
+          <Route exact path="/trips/:theID" render ={(props)=> 
             <TripDetails
               {...props} 
               allTheTrips ={this.state.listOfTrips}

@@ -12,7 +12,7 @@ function Navbar(props){
         <nav>
             {props.theUser && 
                 <span>
-                    <Link to="/api/trips" style={{ textDecoration: 'none', color: '#00B7FF', margin: '10px' }}> My Trips </Link>
+                    <Link to="/trips" style={{ textDecoration: 'none', color: '#00B7FF', margin: '10px' }}> My Trips </Link>
                 </span>
             }
 
@@ -25,7 +25,7 @@ function Navbar(props){
             
             {props.theUser && 
                 <span className='centralMSG'> 
-                    Welcome, {props.theUser.username}. Let's plan for your trip. 
+                    Sup, {props.theUser.username} - Let's get packin' 
                 </span>
             }
 

@@ -6,7 +6,7 @@ class AddClothing extends Component {
   constructor(props){
       super(props);
       this.state = { 
-        newCategory: "", 
+        // newCategory: "", 
         newName: "",
         // newWeight: "",
       };
@@ -15,7 +15,7 @@ class AddClothing extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     axios.post("http://localhost:5000/api/clothing", {
-        theCategory: this.state.newCategory,
+        // theCategory: this.state.newCategory,
         theName: this.state.newName,
         // theWeight: this.state.newWeight,
         theTrip: this.props.theTripToAddClothingTo
@@ -24,7 +24,7 @@ class AddClothing extends Component {
         this.props.getData();
         // this function updates the list in TripIndex.js
         this.setState({
-          newCategory: "", 
+          // newCategory: "", 
           newName: "", 
           // newWeight: ""
         });
@@ -41,10 +41,10 @@ class AddClothing extends Component {
     return(
       <div>
         <form onSubmit={this.handleFormSubmit}>
-        <label> Category: </label>
+        {/* <label> Category: </label>
           <br/>
           <input type="text" name="newCategory" value={this.state.newCategory} onChange={this.handleChange}/>
-          <br/>
+          <br/> */}
           <label> Clothing Name: </label>
           <br/>
           <input type="text" name="newName" value={this.state.newName} onChange={this.handleChange} />
