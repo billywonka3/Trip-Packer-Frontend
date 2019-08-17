@@ -1,28 +1,3 @@
-body {
-  background: url('/images/backgrounds/australia.jpg'); 
-  background-attachment:fixed;
-  background-size:cover;
-  background-position:center;
-  background-repeat: no-repeat; 
-}
-
-.landing-page {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  top: 30vh;
-}
-.landing-text {
-  width: 500px;
-  text-align: center;
-  padding: 1px 10px;
-  background:white;
-  opacity: 0.8;
-  border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-}
-
 .trip-main{
   display: flex;
   justify-content: center;

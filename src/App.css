@@ -11,6 +11,46 @@ nav {
   margin: 0 20px;
 }
 
+body {
+  background: url('/images/backgrounds/australia.jpg'); 
+  background-attachment:fixed;
+  background-size:cover;
+  background-position:center;
+  background-repeat: no-repeat; 
+}
+
+.landing-page {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10vh;
+  /* right: 15vw; */
+}
+.landing-text {
+  width: 500px;
+  text-align: center;
+  padding: 1px 10px;
+  background:white;
+  opacity: 0.8;
+  border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+.img-stripe {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 220px;
+  margin-bottom: 30px;
+
+}
+.img-stripe img {
+  height: 250px;
+  width: 420px;
+}
+
+
+/*------------------ Login Pages ------------------*/
 .login-signup {
   display: flex;
   flex-direction: column;
@@ -19,8 +59,6 @@ nav {
   display: flex;
   justify-content: center;
 }
-
-/*------------------ Login Pages ------------------*/
 /* .signup-background {
     background-image: url(/images/backgrounds/cubicle.jpg); 
     background-size: cover; 

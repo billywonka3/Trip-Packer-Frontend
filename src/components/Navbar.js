@@ -23,11 +23,11 @@ function Navbar(props){
                 </span>
             }
             
-            {props.theUser && 
+            {/* {props.theUser && 
                 <span className='centralMSG'> 
                     Sup, {props.theUser.username} - Let's get packin' 
                 </span>
-            }
+            } */}
 
             {props.theUser && 
                 <span>

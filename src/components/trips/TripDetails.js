@@ -42,7 +42,7 @@ class TripDetails extends Component{
     
     getLatLong = ()=>{
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.searchCity},+${this.state.searchCountry}&key=AIzaSyDkgfr2SrXtnYOzlJ2srEoDGcGe13A5zfs`)
-        // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=Paris,+France&key=AIzaSyDkgfr2SrXtnYOzlJ2srEoDGcGe13A5zfs`)
+        // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=Miami,+US&key=AIzaSyDkgfr2SrXtnYOzlJ2srEoDGcGe13A5zfs`)
             .then((response) =>{
                 console.log("All the data", response);
                 this.setState({latitude: response.data.results[0].geometry.location.lat})
@@ -62,8 +62,9 @@ class TripDetails extends Component{
                 
                 // console.log("Darksky Widget", response);
                 this.setState({forecast: `https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en.js`})
-                // console.log(`https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en?domain=&quot;+encodeURIComponent(window.location.href)+&quot;&amp;auth=1565285343_4a83196ed81f764cbec954f01ac0b1c8&amp;`)
+                // this.setState({forecast: `https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js`})
                 console.log(this.state.forecast)
+                // console.log(`https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en?domain=&quot;+encodeURIComponent(window.location.href)+&quot;&amp;auth=1565285343_4a83196ed81f764cbec954f01ac0b1c8&amp;`)
             })
             .catch((err) =>{
                 console.log(err)
@@ -79,8 +80,6 @@ class TripDetails extends Component{
         script.async = true;
         document.body.appendChild(script);
 
-        
-
     }
 
     resetEdit = () =>{
@@ -91,7 +90,7 @@ class TripDetails extends Component{
     }
 
     deleteClothing = (theID) =>{
-        axios.delete('http://localhost:5000/api/clothing/'+theID)
+        axios.delete(`http://localhost:5000/api/clothing/`+theID)
         .then(()=>{
             this.props.getData();
         })
@@ -100,7 +99,7 @@ class TripDetails extends Component{
         })
     }
     deleteToiletries = (theID) =>{
-        axios.delete('http://localhost:5000/api/toiletries/'+theID)
+        axios.delete(`http://localhost:5000/api/toiletries/`+theID)
         .then(()=>{
             this.props.getData();
         })
@@ -109,7 +108,7 @@ class TripDetails extends Component{
         })
     }
     deleteElectronics = (theID) =>{
-        axios.delete('http://localhost:5000/api/electronics/'+theID)
+        axios.delete(`http://localhost:5000/api/electronics/`+theID)
         .then(() =>{
             this.props.getData();
         })
@@ -231,6 +230,7 @@ class TripDetails extends Component{
                                     </span>
                                 </div>
                             </div>
+                            
                             <div className="details-text">
                                 <div className="lat-lng-search">
                                     <form id="location-form">
@@ -244,18 +244,25 @@ class TripDetails extends Component{
                                 </div>
                                 {showCoordinates()}
                             </div>
+
+                            <hr />
+
+                            <div className="center center-div">
+                                <a href src="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi"> Forecast not showing? Try this chrome extension - https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi </a>
+                            </div>
+                            
+                            <hr/>
+                            
+                            <div className="center center-div">
+                                <a> We have been having technical difficulties with the Geocode API which fetches the location for our forecast feature. Please bear with us while Google work's with us to repair this feature. </a>
+                            </div>
                         </div>
 
                         <div className="weather-bar">
                             {showWidget()}
                         </div>
-
                     </div>
                     
-                    <div className="center center-div">
-                        <a href src="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi"> Forecast not showing? Try this chrome extension - https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi </a>
-                    </div>
-
                     <hr />
 
                     <div className="item-columns">
