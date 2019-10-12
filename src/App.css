@@ -54,6 +54,8 @@ body {
 .login-signup {
   display: flex;
   flex-direction: column;
+  border: double;
+  width: 350px;
 }
 .login-signup > * {
   display: flex;

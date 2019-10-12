@@ -31,11 +31,11 @@ class AddTrip extends Component {
     return(
       <div className="add-trip">
         <form onSubmit={this.handleFormSubmit}>
-          <label>Title:</label>
+          <label>Where are you going?:</label>
           <br/>
           <input type="text" name="newTitle" value={this.state.newTitle} onChange={ e => this.handleChange(e)}/>
           <br/>
-          <label>Description:</label>
+          <label>Add a brief Description:</label>
           <br/>
           <textarea name="newDescription" value={this.state.newDescription} onChange={ e => this.handleChange(e)} />
           <br/>

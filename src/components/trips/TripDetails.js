@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './tripdetails.css';
@@ -56,10 +57,9 @@ class TripDetails extends Component{
     }
 
     getForecast = ()=>{
-        axios.get(`https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en.js`)
+        axios.get(`https://cors-anywhere.herokuapp.com/https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en.js`)
         // axios.get(`https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js`)
             .then((response) =>{
-                
                 // console.log("Darksky Widget", response);
                 this.setState({forecast: `https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en.js`})
                 // this.setState({forecast: `https://darksky.net/widget/default/25.7743,-80.1937/us12/en.js`})
@@ -90,7 +90,7 @@ class TripDetails extends Component{
     }
 
     deleteClothing = (theID) =>{
-        axios.delete(`http://localhost:5000/api/clothing/`+theID)
+        axios.delete(`${process.env.REACT_APP_BASE}/clothing/`+theID)
         .then(()=>{
             this.props.getData();
         })
@@ -99,7 +99,7 @@ class TripDetails extends Component{
         })
     }
     deleteToiletries = (theID) =>{
-        axios.delete(`http://localhost:5000/api/toiletries/`+theID)
+        axios.delete(`${process.env.REACT_APP_BASE}/toiletries/`+theID)
         .then(()=>{
             this.props.getData();
         })
@@ -108,7 +108,7 @@ class TripDetails extends Component{
         })
     }
     deleteElectronics = (theID) =>{
-        axios.delete(`http://localhost:5000/api/electronics/`+theID)
+        axios.delete(`${process.env.REACT_APP_BASE}/electronics/`+theID)
         .then(() =>{
             this.props.getData();
         })
@@ -135,6 +135,15 @@ class TripDetails extends Component{
             )
         }
 
+        const showWidget = () => {
+            return(
+                <iframe style={{overflow:'hidden'}}
+                    height= "420px"
+                    width="400px"
+                    src={this.state.forecast}>
+                </iframe>
+            )
+        }
         // const showForecast = () => {    
         //     return(
         //         <div>
@@ -205,16 +214,6 @@ class TripDetails extends Component{
             })  
         }
 
-        const showWidget = () => {
-            return(
-                <iframe style={{overflow:'hidden'}}
-                    height= "600px"
-                    width="600px"
-                    src={this.state.forecast}>
-                </iframe>
-            )
-        }
-
 
         if(this.props.ready)
             return(
@@ -245,25 +244,19 @@ class TripDetails extends Component{
                                 {showCoordinates()}
                             </div>
 
-                            <hr />
-
-                            <div className="center center-div">
-                                <a href src="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi"> Forecast not showing? Try this chrome extension - https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi </a>
+                            {/* <div className="center center-div">
+                                <Link href src="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi"> 
+                                    Forecast may not display due to heroku's CORS policy. If you encounter this problem, it can be remedied with this chrome extension - https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi 
+                                </Link>
+                            </div> */}
+                        
+                            <div className="forecast-bar">
+                                <div className="weather-bar">
+                                    {showWidget()}
+                                </div>
                             </div>
-                            
-                            <hr/>
-                            
-                            <div className="center center-div">
-                                <a> We have been having technical difficulties with the Geocode API which fetches the location for our forecast feature. Please bear with us while Google work's with us to repair this feature. </a>
-                            </div>
-                        </div>
-
-                        <div className="weather-bar">
-                            {showWidget()}
                         </div>
                     </div>
-                    
-                    <hr />
 
                     <div className="item-columns">
                         <div className= "item-column">
