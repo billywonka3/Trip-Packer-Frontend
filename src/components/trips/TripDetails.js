@@ -219,8 +219,8 @@ class TripDetails extends Component{
             return(
                 <div style={{paddingTop: '20px'}}>
                     
-                    <div className='morph-bar'>
-                        <div>
+                    <div className="morph-bar">
+                        <div className="leftside">
                             <div className="details-text">
                                 <div className= "trip-details">
                                     <span>
@@ -230,92 +230,99 @@ class TripDetails extends Component{
                                 </div>
                             </div>
                             
-                            <div className="details-text">
-                                <div className="lat-lng-search">
-                                    <form id="location-form">
-                                        <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChangeCity} value={this.state.searchCity} placeholder="Enter City"/>
-                                        <br/>
-                                        <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChangeCountry} value={this.state.searchCountry}  placeholder="Enter Country"/>
-                                        {/* <br/>
-                                        <button onClick = {()=>{this.getLatLong()}}
-                                                className="btn btn-primary btn-block">Submit</button> */}
-                                    </form>
+                            <div class="forecast-box">
+                                <div class="morph-bar">
+                                    <i> To get the 5-day Weather Forecast for your destination, </i>
                                 </div>
-                                {showCoordinates()}
+                            
+                                <div className="details-text">
+                                    <div className="lat-lng-search">
+                                        <form id="location-form">
+                                            <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChangeCity} value={this.state.searchCity} placeholder="Enter the City"/>
+                                            <br/>
+                                            <input type="text" id="location-input" className="form-control form-control-lg" onChange={this.handleChangeCountry} value={this.state.searchCountry}  placeholder="Enter the Country"/>
+                                            {/* <br/>
+                                            <button onClick = {()=>{this.getLatLong()}}
+                                                    className="btn btn-primary btn-block">Submit</button> */}
+                                        </form>
+                                    </div>
+                                    {showCoordinates()}
+                                </div>                         
                             </div>
-
-                            {/* <div className="center center-div">
-                                <Link href src="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi"> 
-                                    Forecast may not display due to heroku's CORS policy. If you encounter this problem, it can be remedied with this chrome extension - https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi 
-                                </Link>
-                            </div> */}
-                        
                             <div className="forecast-bar">
                                 <div className="weather-bar">
                                     {showWidget()}
                                 </div>
+                                {/* <div className="center center-div">
+                                    <Link href src="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi"> 
+                                        Forecast may not display due to heroku's CORS policy. If you encounter this problem, it can be remedied with this chrome extension - https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi 
+                                    </Link>
+                                </div> */}
                             </div>
                         </div>
                     </div>
 
-                    <div className="item-columns">
-                        <div className= "item-column">
-                            <h3>Clothing</h3>
-                            <div>
-                                <hr />
-                                {theActualTrip.clothing.length > 0 && 
-                                    <ul className= "list-format">
-                                        {showClothing()}
-                                    </ul>                           
-                                }
-                                <hr /> 
-                            </div>     
-                            <div className="add-item"> 
-                                <AddClothing 
-                                    theTripToAddClothingTo = {theActualTrip._id} 
-                                    getData = {this.props.getData}
-                                />
+                    <div className="rightside">
+                        <div className="item-columns">
+                            <div className= "item-column">
+                                <h3>Clothing</h3>
+                                <div>
+                                    <hr />
+                                    {theActualTrip.clothing.length > 0 && 
+                                        <ul className= "list-format">
+                                            {showClothing()}
+                                        </ul>                           
+                                    }
+                                    <hr /> 
+                                </div>     
+                                <div className="add-item"> 
+                                    <AddClothing 
+                                        theTripToAddClothingTo = {theActualTrip._id} 
+                                        getData = {this.props.getData}
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        <div className= "item-column">
-                            <h3>Toiletries</h3>
-                            <div>
-                                <hr />
-                                {theActualTrip.toiletries.length > 0 && 
-                                    <ul>
-                                        {showToiletries()}
-                                    </ul>                           
-                                }
-                                <hr /> 
+                            <div className= "item-column">
+                                <h3>Toiletries</h3>
+                                <div>
+                                    <hr />
+                                    {theActualTrip.toiletries.length > 0 && 
+                                        <ul>
+                                            {showToiletries()}
+                                        </ul>                           
+                                    }
+                                    <hr /> 
+                                </div>
+                                <div className= "add-item">
+                                    <AddToiletries 
+                                        theTripToAddToiletriesTo = {theActualTrip._id} 
+                                        getData = {this.props.getData}
+                                    />
+                                </div>
                             </div>
-                            <div className= "add-item">
-                                <AddToiletries 
-                                    theTripToAddToiletriesTo = {theActualTrip._id} 
-                                    getData = {this.props.getData}
-                                />
-                            </div>
-                        </div>
 
-                        <div className= "item-column">
-                            <h3>Electronics</h3>
-                            <div>
-                                <hr /> 
-                                {theActualTrip.electronics.length > 0 && 
-                                    <ul>
-                                        {showElectronics()}
-                                    </ul>                           
-                                }
-                                <hr /> 
-                            </div> 
-                            <div className= "add-item">
-                                <AddElectronics 
-                                    theTripToAddElectronicsTo = {theActualTrip._id} 
-                                    getData = {this.props.getData}
-                                />
+                            <div className= "item-column">
+                                <h3>Electronics</h3>
+                                <div>
+                                    <hr /> 
+                                    {theActualTrip.electronics.length > 0 && 
+                                        <ul>
+                                            {showElectronics()}
+                                        </ul>                           
+                                    }
+                                    <hr /> 
+                                </div> 
+                                <div className= "add-item">
+                                    <AddElectronics 
+                                        theTripToAddElectronicsTo = {theActualTrip._id} 
+                                        getData = {this.props.getData}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             )
         else // Loading Icon & Msg

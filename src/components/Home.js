@@ -3,13 +3,7 @@ import {Link} from 'react-router-dom';
 
 function Home(props){
     return (
-        <div>
-            {props.theUser && 
-                <span>
-                    <Link to="/api/trips" style={{ textDecoration: 'none', color: '#00B7FF', margin: '10px' }}> To begin, vist the "My Trips" page </Link>
-                </span>
-            }
-
+        <body>
             {!props.theUser && 
                 <div>
                     <div className= "landing-page">
@@ -30,7 +24,13 @@ function Home(props){
                     </div>
                 </div>
             }
-        </div>
+
+            {props.theUser && 
+                <span>
+                    <Link to="/trips" style={{ textDecoration: 'none', color: '#00B7FF', margin: '10px' }}> To begin, visit the My Trips page </Link>
+                </span>
+            }
+        </body>
     )
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import AuthService from '../services/AuthService';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props){
@@ -34,7 +35,7 @@ class Login extends Component {
     x.type === "password"? x.type = "text":x.type = "password";
   } 
 
-  render(){
+  showLogin = () =>{
     return(
       <form className="login-signup" onSubmit = {this.tryToLogin}>
         <h2>Log in</h2>
@@ -45,7 +46,7 @@ class Login extends Component {
               <a href="#" className="btn twitter" ><i className="fa fa-twitter"></i></a>
           </div>
           <p className="hint-text"> Social login coming soon! </p>
-        <div className="or-seperator"><b>or</b></div>
+          <div className="or-seperator"><b>or</b></div>
           <div className="form-group">
             <legend>Username</legend>
             <input value={this.state.usernameInput}
@@ -67,12 +68,19 @@ class Login extends Component {
             <a> Don't have an account? &nbsp; </a>
             <a className="need-space" href="/signup"> Sign up </a>
           </div>
-        <hr/>
+          <hr/>
           <div className="form-group center-it">
             <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>
           </div>
-        <hr/>
       </form>
+    )
+  }
+
+  render(){
+    return(
+      <div className="landing-page">
+        {this.showLogin()}
+      </div>
     )
   }
 }
