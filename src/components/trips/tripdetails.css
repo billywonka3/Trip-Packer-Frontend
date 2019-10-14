@@ -4,6 +4,9 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+.morph-bar i {
+    color: teal;
+}
 .details-text {
     display: flex;
     justify-content: center;
@@ -53,17 +56,20 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 .weather-bar iframe {
-    margin-top: -160px;
-    height: 600px;
+    margin-top: -170px;
+    margin-right: -220px;
+    padding-left: 20px;
+    height: 620px;
     overflow: hidden;
     background:white;
     opacity: 0.85;
 }
 iframe {
-    width: 770px;
-    padding-right: 260px;
+    width: 350px;
+    padding-right: 240px;
     z-index: -1;
     /* position: relative; */
 
@@ -71,9 +77,6 @@ iframe {
 /* iframe html{
     overflow: hidden !important;
 } */
-.rightside {
-    z-index: 2;
-}
 
 /* Item Columns for Clothing, Toiletries, Electronics, & Special */
 h4 {
@@ -91,7 +94,7 @@ p {
 }
 .item-columns {
     display: flex;
-    margin: 15px 50px;
+    margin: 5px 50px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -119,6 +122,10 @@ p {
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
 }
+.right-side * {
+    background-color: black;
+    color: white;
+ } 
 .add-item {
     display: flex;
     justify-content: center;
@@ -135,8 +142,6 @@ ul {
     padding-right: 10px;
 }
 .delete.btn {
-    /* height: 1vh;
-    width: 3vw; */
     display: flex;
     flex-direction: column;
     align-content: center;
