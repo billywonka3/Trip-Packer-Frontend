@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
 class AddTrip extends Component {
   constructor(props){
     super(props);
@@ -31,7 +30,7 @@ class AddTrip extends Component {
     return(
       <div className="add-trip">
         <form onSubmit={this.handleFormSubmit}>
-          <label>Where are you going?:</label>
+          <label>Where are you going?</label>
           <br/>
           <input type="text" name="newTitle" value={this.state.newTitle} onChange={ e => this.handleChange(e)}/>
           <br/>

@@ -9,14 +9,15 @@ function Home(props){
                     <div className= "landing-page">
                         <div className= "landing-text">
                             <h1> Trip-Packer </h1>
-                            <h4> Customiazable Lists for Packing your Bags & Prepping your Home </h4>
+                            <h3> Customizable Lists for Packing your Bags & Prepping your Home </h3>
                         </div>
-                        {/* <div >
-                            <img src="/images/laoTzu-miles.jpg"/>
-                        </div> */}
+                        <div>
+                            
+                        </div>
                     </div>
                     
                     <div className="img-stripe">
+                        <img src="/images/laotzu-1000-miles.jpg"/>
                         <img src="/images/backgrounds/maldives.jpeg"/>
                         <img src="/images/backgrounds/kyoto-yakasa-pagoda.jpg"/>
                         <img src="/images/backgrounds/Torii-Gate1.jpg"/>

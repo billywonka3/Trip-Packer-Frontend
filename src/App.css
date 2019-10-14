@@ -8,7 +8,11 @@ nav {
   padding-top: 5px;
 }
 .centralMSG {
-  margin: 0 20px;
+  margin: 5px 20px;
+}
+.trip-tab link {
+  color: #00B7FF;
+  margin: 10px;
 }
 
 body {
@@ -27,15 +31,19 @@ body {
   /* right: 15vw; */
 }
 .landing-text {
-  width: 500px;
+  width: 600px;
   text-align: center;
-  padding: 1px 10px;
+  padding: 1px 10px 20px 10px;
   background:white;
   opacity: 0.8;
   border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
 }
+.landing-text h1 {
+  font-family: 'Qwigley', cursive, sans-serif;
+}
+
 .img-stripe {
   display: flex;
   justify-content: center;

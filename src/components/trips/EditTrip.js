@@ -32,8 +32,6 @@ class EditTrip extends Component {
     })
   }
 
- 
-
   render(){
     return (
       <div style= {{marginTop: '22.5px'}}>   

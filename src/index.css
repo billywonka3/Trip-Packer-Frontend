@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.landing-text h1 {
+  font-family: 'Qwigley', cursive, sans-serif;
+  font-size: 10vh;
+}

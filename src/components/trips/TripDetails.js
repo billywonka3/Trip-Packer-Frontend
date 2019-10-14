@@ -8,6 +8,7 @@ import AddClothing from '../items/AddClothing.js';
 import EditClothing from '../items/EditClothing.js';
 import AddToiletries from '../items/AddToiletries.js';
 import AddElectronics from '../items/AddElectronics.js';
+import AddHousehold from '../items/AddHousehold.js';
 
 class TripDetails extends Component{
     constructor(props){
@@ -116,7 +117,15 @@ class TripDetails extends Component{
             console.log(err)
         })
     }
-
+    deleteHousehold = (theID) =>{
+        axios.delete(`${process.env.REACT_APP_BASE}/household/`+theID)
+        .then(() =>{
+            this.props.getData();
+        })
+        .catch((err) =>{
+            console.log(err)
+        })
+    }
 
     render(){
         const allTheTrips = this.props.allTheTrips;
@@ -129,15 +138,15 @@ class TripDetails extends Component{
         const showCoordinates  = () =>{
             return(
                 <div className= "coordinates">
-                    <p>Latitude  : {this.state.latitude}</p>
-                    <p>Longitude : {this.state.longitude}</p>
+                    <p> Latitude  {this.state.latitude}</p>
+                    <p> Longitude {this.state.longitude}</p>
                 </div>
             )
         }
 
         const showWidget = () => {
             return(
-                <iframe style={{overflow:'hidden'}}
+                <iframe style={ {overflow:'hidden'}} scrolling={"no"}
                     height= "420px"
                     width="400px"
                     src={this.state.forecast}>
@@ -214,27 +223,37 @@ class TripDetails extends Component{
             })  
         }
 
+        const showHousehold = () =>{
+            return theActualTrip.household.map((eachHousehold)=>{
+                // console.log(eachHousehold)
+                return ( <li key={eachHousehold._id}>
+                            <div className="list-and-btn">
+                                <div>
+                                    <p>{eachHousehold.name}</p>
+                                </div>
+                                <p>
+                                    <button className="delete-btn" onClick = {()=>{this.deleteHousehold(eachHousehold._id)}}>Delete</button>
+                                </p>
+                            </div>
+                        </li>
+                )
+            })  
+        }
 
         if(this.props.ready)
             return(
                 <div style={{paddingTop: '20px'}}>
-                    
-                    <div className="morph-bar">
-                        <div className="leftside">
-                            <div className="details-text">
-                                <div className= "trip-details">
-                                    <span>
-                                        <h2> {theActualTrip.title} </h2>
-                                        <h5> {theActualTrip.description} </h5>
-                                    </span>
-                                </div>
-                            </div>
-                            
+                    <div className="details-text">
+                        <h2> {theActualTrip.title} </h2>
+                        {/* <h5> {theActualTrip.description} </h5> */}
+                    </div>
+
+                    <div className="top-window">
+                        <div className="left-side">
                             <div class="forecast-box">
                                 <div class="morph-bar">
-                                    <i> To get the 5-day Weather Forecast for your destination, </i>
+                                    <i> To get the Weather Forecast for your destination : </i>
                                 </div>
-                            
                                 <div className="details-text">
                                     <div className="lat-lng-search">
                                         <form id="location-form">
@@ -247,7 +266,7 @@ class TripDetails extends Component{
                                         </form>
                                     </div>
                                     {showCoordinates()}
-                                </div>                         
+                                </div>                        
                             </div>
                             <div className="forecast-bar">
                                 <div className="weather-bar">
@@ -260,69 +279,85 @@ class TripDetails extends Component{
                                 </div> */}
                             </div>
                         </div>
-                    </div>
-
-                    <div className="rightside">
-                        <div className="item-columns">
-                            <div className= "item-column">
-                                <h3>Clothing</h3>
+                        {/* <div className="rightside item-columns">
+                            <div className="item-column">
+                                <h3>Home Prep Tasks</h3>
                                 <div>
                                     <hr />
-                                    {theActualTrip.clothing.length > 0 && 
+                                    {theActualTrip.household.length > 0 && 
                                         <ul className= "list-format">
-                                            {showClothing()}
+                                            {showHousehold()}
                                         </ul>                           
                                     }
                                     <hr /> 
                                 </div>     
                                 <div className="add-item"> 
-                                    <AddClothing 
-                                        theTripToAddClothingTo = {theActualTrip._id} 
+                                    <AddHousehold
+                                        theTripToAddHouseholdTo = {theActualTrip._id} 
                                         getData = {this.props.getData}
                                     />
                                 </div>
                             </div>
+                        </div> */}
+                    </div>
 
-                            <div className= "item-column">
-                                <h3>Toiletries</h3>
-                                <div>
-                                    <hr />
-                                    {theActualTrip.toiletries.length > 0 && 
-                                        <ul>
-                                            {showToiletries()}
-                                        </ul>                           
-                                    }
-                                    <hr /> 
-                                </div>
-                                <div className= "add-item">
-                                    <AddToiletries 
-                                        theTripToAddToiletriesTo = {theActualTrip._id} 
-                                        getData = {this.props.getData}
-                                    />
-                                </div>
+                    <div className="item-columns">
+                        <div className= "item-column">
+                            <h3>Clothing</h3>
+                            <div>
+                                <hr />
+                                {theActualTrip.clothing.length > 0 && 
+                                    <ul className= "list-format">
+                                        {showClothing()}
+                                    </ul>                           
+                                }
+                                <hr /> 
+                            </div>     
+                            <div className="add-item"> 
+                                <AddClothing 
+                                    theTripToAddClothingTo = {theActualTrip._id} 
+                                    getData = {this.props.getData}
+                                />
                             </div>
-
-                            <div className= "item-column">
-                                <h3>Electronics</h3>
-                                <div>
-                                    <hr /> 
-                                    {theActualTrip.electronics.length > 0 && 
-                                        <ul>
-                                            {showElectronics()}
-                                        </ul>                           
-                                    }
-                                    <hr /> 
-                                </div> 
-                                <div className= "add-item">
-                                    <AddElectronics 
-                                        theTripToAddElectronicsTo = {theActualTrip._id} 
-                                        getData = {this.props.getData}
-                                    />
-                                </div>
+                        </div>
+                        <div className= "item-column">
+                            <h3>Toiletries</h3>
+                            <div>
+                                <hr />
+                                {theActualTrip.toiletries.length > 0 && 
+                                    <ul>
+                                        {showToiletries()}
+                                    </ul>                           
+                                }
+                                <hr /> 
+                            </div>
+                            <div className= "add-item">
+                                <AddToiletries 
+                                    theTripToAddToiletriesTo = {theActualTrip._id} 
+                                    getData = {this.props.getData}
+                                />
+                            </div>
+                        </div>
+                        <div className= "item-column">
+                            <h3>Electronics</h3>
+                            <div>
+                                <hr /> 
+                                {theActualTrip.electronics.length > 0 && 
+                                    <ul>
+                                        {showElectronics()}
+                                    </ul>                           
+                                }
+                                <hr /> 
+                            </div> 
+                            <div className= "add-item">
+                                <AddElectronics 
+                                    theTripToAddElectronicsTo = {theActualTrip._id} 
+                                    getData = {this.props.getData}
+                                />
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             )
         else // Loading Icon & Msg

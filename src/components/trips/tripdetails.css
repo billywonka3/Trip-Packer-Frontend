@@ -7,19 +7,14 @@
 .details-text {
     display: flex;
     justify-content: center;
-    width: 600px;
-}
-.details-text div {
-    margin-right: 10px;
 }
 .trip-details {
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 50vw;
-    position: relative;
     /* top: -15px; */
 }
+
 .center {
     display: flex;
     justify-content: center;
@@ -43,14 +38,16 @@
     font-size: 16px !important;
     position: relative;
     top: 5px;
+    margin-left: 20px;
 }
 
 /* Weather Forecast Bar */
-.forecast-box {
+.left-side{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
+    align-items: center;  
+    /* border: double; */
+    width: 600px;
 }
 .weather-bar {
     display: flex;
@@ -64,8 +61,18 @@
     background:white;
     opacity: 0.85;
 }
-iframe html{
+iframe {
+    width: 770px;
+    padding-right: 260px;
+    z-index: -1;
+    /* position: relative; */
+
+}
+/* iframe html{
     overflow: hidden !important;
+} */
+.rightside {
+    z-index: 2;
 }
 
 /* Item Columns for Clothing, Toiletries, Electronics, & Special */
@@ -77,9 +84,10 @@ p {
     margin-block-start: 5px;
     margin-block-end: 5px;
 }
-.rightside{
+.top-window {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .item-columns {
     display: flex;

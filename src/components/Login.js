@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 // import AuthService from '../services/AuthService';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props){
     super(props);
-    this.state = { usernameInput: '', passwordInput: '' };
+    this.state = { usernameInput: '', passwordInput: '',
+    redirectToReferrer: false};
     // this.service = new AuthService();
   }
 
@@ -64,10 +65,10 @@ class Login extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="text-center"> 
+          {/* <div className="text-center"> 
             <a> Don't have an account? &nbsp; </a>
             <a className="need-space" href="/signup"> Sign up </a>
-          </div>
+          </div> */}
           <hr/>
           <div className="form-group center-it">
             <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>

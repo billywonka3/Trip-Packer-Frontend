@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import AuthService from '../services/AuthService';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class Signup extends Component {
   constructor(props){
@@ -65,10 +65,10 @@ class Signup extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="text-center"> 
+          {/* <div className="text-center"> 
             <a> Already have an account? &nbsp; </a>
             <a className="need-space" href="/signup"> Log In </a>
-          </div>
+          </div> */}
           <hr/>
           <div className="form-group center-it">
             <button type="submit" className="btn btn-success btn-lg btn-block signup-btn"> Submit </button>

@@ -21,19 +21,20 @@
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
 }
-/* .tripbox1 p {
-  width: 420px;
-} */
 .trip-box2 {
   margin: 10px;
   border: solid;
   width: 325px;
   padding: 10px 15px 15px 20px;
-  background:white;
+  background:black;
+  color: white;
   opacity: 0.8;
   border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
+}
+.trip-box2 i {
+  color: teal;
 }
 textarea {
   height: 10vh;
