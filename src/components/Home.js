@@ -16,14 +16,17 @@ function Home(props){
                         </div>
                     </div>
                     
-                    <div className="img-stripe">
+                    {/* <div className="img-stripe">
                         <img src="/images/laotzu-1000-miles.jpg"/>
                         <img src="/images/backgrounds/maldives.jpeg"/>
                         <img src="/images/backgrounds/kyoto-yakasa-pagoda.jpg"/>
                         <img src="/images/backgrounds/Torii-Gate1.jpg"/>
                         <img src="/images/backgrounds/Fushimi Inari1.jpg"/>
                         <img src="/images/backgrounds/broken-bay.jpg"/>
-                    </div>
+                    </div> */}
+
+                    {/* <div> <img src="/images/laotzu-1000-miles.jpg"/> </div> */}
+
                 </div>
             }
 

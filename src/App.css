@@ -7,8 +7,15 @@ nav {
   height: 35px;
   padding-top: 5px;
 }
+nav > div > button {
+  font-size: 18px;
+} 
 .centralMSG {
   margin: 5px 20px;
+}
+.logout-btn {
+  position: absolute;
+  right: 10px;
 }
 .trip-tab link {
   color: #00B7FF;
@@ -31,9 +38,9 @@ body {
   /* right: 15vw; */
 }
 .landing-text {
-  width: 600px;
+  width: 465px;
   text-align: center;
-  padding: 1px 10px 20px 10px;
+  padding: 25px 85px 75px;
   background:white;
   opacity: 0.8;
   border-radius: 20px;
@@ -42,6 +49,8 @@ body {
 }
 .landing-text h1 {
   font-family: 'Qwigley', cursive, sans-serif;
+  margin-top: 50px;
+  margin-bottom: -10px;
 }
 
 .img-stripe {

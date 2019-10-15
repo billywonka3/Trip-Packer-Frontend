@@ -10,10 +10,11 @@ function Navbar(props){
     return(
         <nav>
             {!props.theUser && 
-                <span>
+                <div>
                     <button onClick = {()=> props.toggleForm('login')} > Login </button>
+                    <i> &nbsp;&nbsp; or &nbsp;&nbsp; </i>
                     <button onClick = {()=> props.toggleForm('signup')}> Sign Up </button>
-                </span>
+                </div>
             }
 
             {/* {props.theTrip && 
@@ -21,8 +22,6 @@ function Navbar(props){
                     <Link to="/trips"> {props.theTrip.title} </Link>
                 </span>
             } */}
-
-
             {/* {props.theUser && 
                 <span>
                     <Link to="/trips" style={{ textDecoration: 'none', color: '#00B7FF', margin: '10px' }}> My Trips </Link>
@@ -36,11 +35,11 @@ function Navbar(props){
                 </span>
             }
 
-            {/* {props.theUser && 
-                <span>
+            {props.theUser && 
+                <span className="logout-btn">
                     <button onClick = {doTheLogout} > Log Out </button>
                 </span>
-            } */}
+            }
         </nav>
     )
 }
