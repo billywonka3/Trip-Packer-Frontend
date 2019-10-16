@@ -38,7 +38,7 @@ class Signup extends Component {
   
   showSignup = () =>{
     return(
-      <form className="login-signup" onSubmit = {this.tryToLogin}>
+      <form className="login-signup" onSubmit = {this.tryToSignUp}>
         <h2>Sign Up</h2>
           <p className="hint-text">Sign up with your social media account</p>
           <div className="social-btns text-center">

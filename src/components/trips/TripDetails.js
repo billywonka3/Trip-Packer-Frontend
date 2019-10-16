@@ -10,6 +10,9 @@ import AddToiletries from '../items/AddToiletries.js';
 import AddElectronics from '../items/AddElectronics.js';
 import AddHousehold from '../items/AddHousehold.js';
 
+import AwesomeSlider from 'react-awesome-slider';
+import 'react-awesome-slider/dist/styles.css';
+
 class TripDetails extends Component{
     constructor(props){
         super(props)
@@ -175,10 +178,10 @@ class TripDetails extends Component{
                                         {/* <h4>{eachClothing.category}</h4> */}
                                         <p>{eachClothing.name}</p>
                                     </div>
-                                    <div>
+                                    <p>
                                         <button onClick = {()=>{this.edit(index)}}>Edit</button>
                                         <button className="delete-btn" onClick = {()=>{this.deleteClothing(eachClothing._id)}}>Delete</button>
-                                    </div>
+                                    </p>
                                 </div>
                             </li>
                     )
@@ -201,9 +204,9 @@ class TripDetails extends Component{
                                 <div>
                                     <p>{eachToiletries.name}</p>
                                 </div>
-                                <div>
+                                <p>
                                     <button className="delete-btn" onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
-                                </div>
+                                </p>
                             </div>
                         </li>
                 )
@@ -243,6 +246,17 @@ class TripDetails extends Component{
                 )
             })  
         }
+
+        const slider = () =>{
+            return (
+                <AwesomeSlider>
+                    <img src="/public/images/laotzu-1000-miles.jpg" alt="Lao Tzu"/>
+                    <img src="/public/backgrounds/maldives.jpeg" alt="Maldives"/>
+                    <img src="/public/backgrounds/Torii-Gate1.jpg" alt="Torii-Gate"/>
+                </AwesomeSlider>
+            )
+        }
+
 
         if(this.props.ready)
             return(
@@ -284,25 +298,8 @@ class TripDetails extends Component{
                             </div>
                         </div>
 
-                        <div className="right-side item-columns">
-                            <div className="item-column">
-                                <h3>Home Prep Tasks</h3>
-                                <div>
-                                    <hr/>
-                                    {theActualTrip.household.length > 0 && 
-                                        <ul className= "list-format">
-                                            {showHousehold()}
-                                        </ul>                           
-                                    }
-                                    <hr /> 
-                                </div>     
-                                <div className="add-item"> 
-                                    <AddHousehold
-                                        theTripToAddHouseholdTo = {theActualTrip._id} 
-                                        getData = {this.props.getData}
-                                    />
-                                </div>
-                            </div>
+                        <div className="right-side">
+                            {slider()}
                         </div>
                     </div>
 
@@ -326,7 +323,25 @@ class TripDetails extends Component{
                             </div>
                         </div>
                         <div className= "item-column">
-                            <h3>Toiletries</h3>
+                            <h3>Electronics</h3>
+                            <div>
+                                <hr /> 
+                                {theActualTrip.electronics.length > 0 && 
+                                    <ul>
+                                        {showElectronics()}
+                                    </ul>                           
+                                }
+                                <hr /> 
+                            </div> 
+                            <div className= "add-item">
+                                <AddElectronics 
+                                    theTripToAddElectronicsTo = {theActualTrip._id} 
+                                    getData = {this.props.getData}
+                                />
+                            </div>
+                        </div>
+                        <div className= "item-column">
+                            <h3>Hygiene</h3>
                             <div>
                                 <hr />
                                 {theActualTrip.toiletries.length > 0 && 
@@ -343,22 +358,24 @@ class TripDetails extends Component{
                                 />
                             </div>
                         </div>
-                        <div className= "item-column">
-                            <h3>Electronics</h3>
-                            <div>
-                                <hr /> 
-                                {theActualTrip.electronics.length > 0 && 
-                                    <ul>
-                                        {showElectronics()}
-                                    </ul>                           
-                                }
-                                <hr /> 
-                            </div> 
-                            <div className= "add-item">
-                                <AddElectronics 
-                                    theTripToAddElectronicsTo = {theActualTrip._id} 
-                                    getData = {this.props.getData}
-                                />
+                        <div className="home-prep item-columns">
+                            <div className="item-column">
+                                <h3>Home-Prep Tasks</h3>
+                                <div>
+                                    <hr/>
+                                    {theActualTrip.household.length > 0 && 
+                                        <ul className= "list-format">
+                                            {showHousehold()}
+                                        </ul>                           
+                                    }
+                                    <hr /> 
+                                </div>     
+                                <div className="add-item"> 
+                                    <AddHousehold
+                                        theTripToAddHouseholdTo = {theActualTrip._id} 
+                                        getData = {this.props.getData}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

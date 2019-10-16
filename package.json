@@ -8,6 +8,7 @@
     "bulma": "^0.7.5",
     "moment": "^2.24.0",
     "react": "^16.8.6",
+    "react-awesome-slider": "^2.0.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.8.6",
     "react-geocode": "^0.1.2",
