@@ -8,6 +8,14 @@ nav {
 }
 nav > div > button {
   font-size: 18px;
+  margin: 3.5px 20px;
+  background: purple;
+  color: white;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 } 
 .centralMSG {
   margin: 5px 20px;
@@ -15,6 +23,7 @@ nav > div > button {
 .logout-btn {
   position: absolute;
   right: 10px;
+  top: 3.5px;
 }
 .trip-tab link {
   color: #00B7FF;
@@ -34,7 +43,7 @@ body {
   justify-content: center;
   position: relative;
   top: 10vh;
-  /* right: 15vw; */
+  margin-bottom: 140px;
 }
 .landing-text {
   width: 465px;
@@ -45,6 +54,8 @@ body {
   border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
+    -ms-border-radius:20px;
+    -o-border-radius:20px;
 }
 .landing-text h1 {
   font-family: 'Qwigley', cursive, sans-serif;
@@ -54,7 +65,7 @@ body {
 
 .image-row {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 .landing-wrap {
   display: flex;
@@ -62,23 +73,41 @@ body {
 }
 .circle-divs {
   width: 205px;
-  margin: 0 20px;
+  margin: 30px 50px;
+}
+.circle-divs p {
+  text-align: center;
+  background:black;
+  color:white;
+  padding: 6px;
+  border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius:20px;
+    -o-border-radius:20px;
 }
 .image-cropper {
-  width: 200px;
   height: 200px;
-  /* position: relative; */
+  width: 200px;
+  /*position: relative;*/
   overflow: hidden;
   border-radius: 50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    -ms-border-radius:50%;
+    -o-border-radius:50%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   background: black;
 }
 .ergo-circle {
+  position: relative;
+  bottom: 12px;
+  left: 6px;
+  height: 100%;
+  width: auto;
   margin: 0 auto;
   margin-top: 6%;
-  height: 90%;
-  width: auto;
 }
 /* 
 .img-stripe {
