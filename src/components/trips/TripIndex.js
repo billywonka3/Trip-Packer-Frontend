@@ -73,13 +73,13 @@ class TripIndex extends Component {
         if(this.props.ready)
             return(
                 <div className="trip-main">
-                    <div>
+                    <div className="trip-column">
                         <div className="trip-column">
                             {this.showTrips()}
-                            <div className="trip-box2">
-                                <h4><i>Let's begin by creating a Trip</i></h4>
-                                <AddTrip getData={this.props.getData}/>
-                            </div>
+                        </div>
+                        <div className="trip-box2">
+                            <h4><i>Let's begin by creating a Trip</i></h4>
+                            <AddTrip getData={this.props.getData}/>
                         </div>
                     </div>
                 </div>

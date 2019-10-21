@@ -45,5 +45,4 @@ class AddTrip extends Component {
   }
 }
 
-
 export default AddTrip;

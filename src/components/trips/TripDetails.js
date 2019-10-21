@@ -8,10 +8,10 @@ import AddClothing from '../items/AddClothing.js';
 import EditClothing from '../items/EditClothing.js';
 import AddToiletries from '../items/AddToiletries.js';
 import AddElectronics from '../items/AddElectronics.js';
+import AddSpecials from '../items/AddSpecials.js';
 import AddHousehold from '../items/AddHousehold.js';
 
-import AwesomeSlider from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
+import Carousel from '../carousels/Carousel1.js';
 
 class TripDetails extends Component{
     constructor(props){
@@ -83,7 +83,6 @@ class TripDetails extends Component{
         script.src = `https://darksky.net/widget/default/${this.state.latitude},${this.state.longitude}/us12/en.js`
         script.async = true;
         document.body.appendChild(script);
-
     }
 
     resetEdit = () =>{
@@ -103,6 +102,16 @@ class TripDetails extends Component{
             console.log(err)
         })
     }
+    deleteElectronics = (theID) =>{
+        axios.delete(`${process.env.REACT_APP_BASE}/electronics/`+theID)
+        axios.delete(`http://localhost:5000/api/electronics/`+theID)
+        .then(() =>{
+            this.props.getData();
+        })
+        .catch((err) =>{
+            console.log(err)
+        })
+    }
     deleteToiletries = (theID) =>{
         axios.delete(`${process.env.REACT_APP_BASE}/toiletries/`+theID)
         axios.delete(`http://localhost:5000/api/toiletries/`+theID)
@@ -113,9 +122,9 @@ class TripDetails extends Component{
             console.log(err)
         })
     }
-    deleteElectronics = (theID) =>{
-        axios.delete(`${process.env.REACT_APP_BASE}/electronics/`+theID)
-        axios.delete(`http://localhost:5000/api/electronics/`+theID)
+    deleteSpecials = (theID) =>{
+        axios.delete(`${process.env.REACT_APP_BASE}/specials/`+theID)
+        axios.delete(`http://localhost:5000/api/specials/`+theID)
         .then(() =>{
             this.props.getData();
         })
@@ -160,30 +169,24 @@ class TripDetails extends Component{
                 </iframe>
             )
         }
-        // const showForecast = () => {    
-        //     return(
-        //         <div>
-        //             {this.getForecast()}
-        //         </div>
-        //     )
-        // }
 
         const showClothing = () =>{
             return theActualTrip.clothing.map((eachClothing, index)=>{
                 // console.log(eachClothing)
                 if(this.state.editing !== index)
-                    return ( <li>
-                                <div className="list-and-btn">
-                                    <div>
-                                        {/* <h4>{eachClothing.category}</h4> */}
-                                        <p>{eachClothing.name}</p>
-                                    </div>
-                                    <p>
-                                        <button onClick = {()=>{this.edit(index)}}>Edit</button>
-                                        <button className="delete-btn" onClick = {()=>{this.deleteClothing(eachClothing._id)}}>Delete</button>
-                                    </p>
+                    return ( 
+                        <li>
+                            <div className="list-and-btn">
+                                <div>
+                                    {/* <h4>{eachClothing.category}</h4> */}
+                                    <p>{eachClothing.name}</p>
                                 </div>
-                            </li>
+                                <p>
+                                    <button onClick = {()=>{this.edit(index)}}>Edit</button>
+                                    <button className="delete-btn" onClick = {()=>{this.deleteClothing(eachClothing._id)}}>Delete</button>
+                                </p>
+                            </div>
+                        </li>
                     )
                 else
                     return(
@@ -196,36 +199,56 @@ class TripDetails extends Component{
             })  
         }
 
-        const showToiletries = () =>{
-            return theActualTrip.toiletries.map((eachToiletries)=>{
-                // console.log(eachToiletries)
-                return ( <li key={eachToiletries._id} >
-                            <div className="list-and-btn">
-                                <div>
-                                    <p>{eachToiletries.name}</p>
-                                </div>
-                                <p>
-                                    <button className="delete-btn" onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
-                                </p>
+        const showElectronics = () =>{
+            return theActualTrip.electronics.map((eachElectronics)=>{
+                // console.log(eachElectronics)
+                return ( 
+                    <li key={eachElectronics._id}>
+                        <div className="list-and-btn">
+                            <div>
+                                <p>{eachElectronics.name}</p>
                             </div>
-                        </li>
+                            <p>
+                                <button className="delete-btn" onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
+                            </p>
+                        </div>
+                    </li>
                 )
             })  
         }
 
-        const showElectronics = () =>{
-            return theActualTrip.electronics.map((eachElectronics)=>{
-                // console.log(eachElectronics)
-                return ( <li key={eachElectronics._id}>
-                            <div className="list-and-btn">
-                                <div>
-                                    <p>{eachElectronics.name}</p>
-                                </div>
-                                <p>
-                                    <button className="delete-btn" onClick = {()=>{this.deleteElectronics(eachElectronics._id)}}>Delete</button>
-                                </p>
+        const showToiletries = () =>{
+            return theActualTrip.toiletries.map((eachToiletries)=>{
+                // console.log(eachToiletries)
+                return ( 
+                    <li key={eachToiletries._id} >
+                        <div className="list-and-btn">
+                            <div>
+                                <p>{eachToiletries.name}</p>
                             </div>
-                        </li>
+                            <p>
+                                <button className="delete-btn" onClick = {()=>{this.deleteToiletries(eachToiletries._id)}}>Delete</button>
+                            </p>
+                        </div>
+                    </li>
+                )
+            })  
+        }
+
+        const showSpecials = () =>{
+            return theActualTrip.specials.map((eachSpecials)=>{
+                // console.log(eachSpecials)
+                return ( 
+                    <li key={eachSpecials._id} >
+                        <div className="list-and-btn">
+                            <div>
+                                <p>{eachSpecials.name}</p>
+                            </div>
+                            <p>
+                                <button className="delete-btn" onClick = {()=>{this.deleteSpecials(eachSpecials._id)}}>Delete</button>
+                            </p>
+                        </div>
+                    </li>
                 )
             })  
         }
@@ -233,34 +256,22 @@ class TripDetails extends Component{
         const showHousehold = () =>{
             return theActualTrip.household.map((eachHousehold)=>{
                 // console.log(eachHousehold)
-                return ( <li key={eachHousehold._id}>
-                            <div className="list-and-btn">
-                                <div>
-                                    <p>{eachHousehold.name}</p>
-                                </div>
-                                <p>
-                                    <button className="delete-btn" onClick = {()=>{this.deleteHousehold(eachHousehold._id)}}>Delete</button>
-                                </p>
+                return ( 
+                    <li key={eachHousehold._id}>
+                        <div className="list-and-btn">
+                            <div>
+                                <p>{eachHousehold.name}</p>
                             </div>
-                        </li>
+                            <p>
+                                <button className="delete-btn" onClick = {()=>{this.deleteHousehold(eachHousehold._id)}}>Delete</button>
+                            </p>
+                        </div>
+                    </li>
                 )
             })  
         }
 
-        const slider = () =>{
-            return (
-                <AwesomeSlider>
-                    <div>
-                        <img src="/public/images/laotzu-1000-miles.jpg" alt="Lao Tzu"/>
-                        <img src="/public/backgrounds/maldives.jpeg" alt="Maldives"/>
-                        <img src="/public/backgrounds/Torii-Gate1.jpg" alt="Torii-Gate"/>
-                    </div>
-                </AwesomeSlider>
-            )
-        }
-
-
-        if(this.props.ready)
+         if(this.props.ready)
             return(
                 <div style={{paddingTop: '20px'}}>
                     <div className="details-text">
@@ -270,8 +281,8 @@ class TripDetails extends Component{
 
                     <div className="top-window">
                         <div className="left-side">
-                            <div class="forecast-box">
-                                <div class="morph-bar">
+                            <div className="forecast-box">
+                                <div className="morph-bar">
                                     <i> To get the Weather Forecast for your destination : </i>
                                 </div>
                                 <div className="details-text">
@@ -299,13 +310,30 @@ class TripDetails extends Component{
                                 </div> */}
                             </div>
                         </div>
-
-                        <div className="right-side">
-                            {slider()}
+                        <div id="container" className="right-side">
+                            <Carousel/>
                         </div>
                     </div>
 
                     <div className="item-columns">
+                        <div className= "item-column">
+                            <h3><u>Specials</u></h3>
+                            <div>
+                                <hr />
+                                {theActualTrip.specials.length > 0 && 
+                                    <ul>
+                                        {showSpecials()}
+                                    </ul>                           
+                                }
+                                <hr /> 
+                            </div>
+                            <div className= "add-item">
+                                <AddSpecials
+                                    theTripToAddSpecialsTo = {theActualTrip._id} 
+                                    getData = {this.props.getData}
+                                />
+                            </div>
+                        </div>
                         <div className= "item-column">
                             <h3><u>Clothing</u></h3>
                             <div>
@@ -360,7 +388,7 @@ class TripDetails extends Component{
                                 />
                             </div>
                         </div>
-                        <div className="home-prep item-columns">
+                        <div className="home-prep item-column">
                             <div className="item-column">
                                 <h3><u>Home-Prep Tasks</u></h3>
                                 <div>

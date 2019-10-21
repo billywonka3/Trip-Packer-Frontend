@@ -8,12 +8,12 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 12px;
-  width: 70vw;
+  width: 75vw;
 }
 .trip-box1 {
   margin: 10px;
   border: solid;
-  width: 320px;
+  width: 275px;
   padding: 0px 20px 25px 20px;
   background:white;
   opacity: 0.8;
@@ -22,6 +22,7 @@
     -moz-border-radius: 20px;
 }
 .trip-box1 h3 {
+  font-family: 'Titillium', cursive, sans-serif;
   margin: 15px 0 10px 0;
 }
 .trip-box2 {
